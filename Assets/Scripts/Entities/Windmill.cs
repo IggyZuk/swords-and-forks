@@ -11,32 +11,25 @@ public class Windmill : Entity
         this.tile = tile;
 
         task = Task.Add()
-            .Time(1)
+            .Time(1f)
             .Loop(-1)
+            .Random(0.5f)
             .OnRepeat(_ =>
             {
-                Debug.Log(_);
+                Pos[] neighbours = {
+                    new Pos(tile.pos.x - 1, tile.pos.y),
+                    new Pos(tile.pos.x + 1, tile.pos.y),
+                    new Pos(tile.pos.x, tile.pos.y - 1),
+                    new Pos(tile.pos.x, tile.pos.y + 1),
+                    new Pos(tile.pos.x - 1, tile.pos.y - 1),
+                    new Pos(tile.pos.x + 1, tile.pos.y - 1),
+                    new Pos(tile.pos.x - 1, tile.pos.y + 1),
+                    new Pos(tile.pos.x + 1, tile.pos.y + 1),
+                };
 
-                Tile t1 = Controller.Instance.grid.GetTile(tile.pos.x, tile.pos.y - 1);
-                if (t1 != null)
-                {
-                    t1.Entity = new Windmill();
-                }
-                Tile t2 = Controller.Instance.grid.GetTile(tile.pos.x, tile.pos.y + 1);
-                if (t2 != null)
-                {
-                    t2.Entity = new Windmill();
-                }
-                Tile t3 = Controller.Instance.grid.GetTile(tile.pos.x - 1, tile.pos.y);
-                if (t3 != null)
-                {
-                    t3.Entity = new Windmill();
-                }
-                Tile t4 = Controller.Instance.grid.GetTile(tile.pos.x + 1, tile.pos.y);
-                if (t4 != null)
-                {
-                    t4.Entity = new Windmill();
-                }
+                Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
+
+                Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y);
             });
     }
 
