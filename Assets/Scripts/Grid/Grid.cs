@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < w; x++)
             {
-                Tile tile = Instantiate(Assets.tile);
+                Tile tile = Instantiate(Assets.Tile);
                 tiles[x, y] = tile;
                 tile.pos = new Pos(x, y);
                 tile.transform.SetParent(this.transform);

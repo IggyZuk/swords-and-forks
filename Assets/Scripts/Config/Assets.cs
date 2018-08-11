@@ -3,17 +3,22 @@ using UnityEngine;
 
 public static class Assets
 {
-    public static Tile tile;
+    public static Tile Tile;
 
-    public static Sprite wheat;
-    public static Sprite tree;
+    public static Sprite Wheat_0;
+    public static Sprite Wheat_1;
+    public static Sprite Wheat_2;
 
-    public static Sprite townhall;
-    public static Sprite house;
-    public static Sprite windmill;
-    public static Sprite lumberyard;
-    public static Sprite castle;
-    public static Sprite tower;
+    public static Sprite Tree_0;
+    public static Sprite Tree_1;
+    public static Sprite Tree_2;
+
+    public static Sprite Townhall;
+    public static Sprite House;
+    public static Sprite Windmill;
+    public static Sprite Lumberyard;
+    public static Sprite Castle;
+    public static Sprite Tower;
 
     public static void Configure()
     {
@@ -24,7 +29,7 @@ public static class Assets
     {
         string path = "Prefabs/";
 
-        tile = Resources.Load<Tile>(path + "Tile");
+        Tile = Resources.Load<Tile>(path + "Tile");
     }
 
     static void LoadSprites()
@@ -33,14 +38,19 @@ public static class Assets
 
         Sprite[] atlas = Resources.LoadAll<Sprite>(path + "ld32-tileset");
 
-        wheat = atlas.Single(s => s.name == "ld32-tileset_11");
-        tree = atlas.Single(s => s.name == "ld32-tileset_14");
+        Wheat_0 = atlas.Single(s => s.name == "ld32-tileset_9");
+        Wheat_1 = atlas.Single(s => s.name == "ld32-tileset_10");
+        Wheat_2 = atlas.Single(s => s.name == "ld32-tileset_11");
 
-        townhall = atlas.Single(s => s.name == "ld32-tileset_3");
-        house = atlas.Single(s => s.name == "ld32-tileset_4");
-        windmill = atlas.Single(s => s.name == "ld32-tileset_5");
-        lumberyard = atlas.Single(s => s.name == "ld32-tileset_6");
-        castle = atlas.Single(s => s.name == "ld32-tileset_7");
-        tower = atlas.Single(s => s.name == "ld32-tileset_8");
+        Tree_0 = atlas.Single(s => s.name == "ld32-tileset_12");
+        Tree_1 = atlas.Single(s => s.name == "ld32-tileset_13");
+        Tree_2 = atlas.Single(s => s.name == "ld32-tileset_14");
+
+        Townhall = atlas.Single(s => s.name == "ld32-tileset_3");
+        House = atlas.Single(s => s.name == "ld32-tileset_4");
+        Windmill = atlas.Single(s => s.name == "ld32-tileset_5");
+        Lumberyard = atlas.Single(s => s.name == "ld32-tileset_6");
+        Castle = atlas.Single(s => s.name == "ld32-tileset_7");
+        Tower = atlas.Single(s => s.name == "ld32-tileset_8");
     }
 }

@@ -23,15 +23,12 @@ public class Tile : MonoBehaviour
 
             entity = value;
 
+            entityImage.enabled = value != null;
+
             if (value != null)
             {
-                entityImage.enabled = true;
-                entityImage.sprite = entity.GetSprite();
                 entity.Init(this);
-            }
-            else
-            {
-                entityImage.enabled = false;
+                SetEntitySprite(entity.GetSprite());
             }
         }
     }
@@ -55,6 +52,11 @@ public class Tile : MonoBehaviour
             level = value;
             levelLabel.text = level > 0 ? level.ToString() : string.Empty;
         }
+    }
+
+    public void SetEntitySprite(Sprite sprite)
+    {
+        entityImage.sprite = sprite;
     }
 
     public void Tick()

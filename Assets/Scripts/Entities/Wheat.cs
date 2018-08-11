@@ -10,10 +10,18 @@ public class Wheat : Entity
     {
         this.tile = tile;
 
+        Sprite[] wheatProgressSprites = new Sprite[]
+        {
+            Assets.Wheat_0,
+            Assets.Wheat_1,
+            Assets.Wheat_2
+        };
+
         task = Task.Add()
-            .Time(1f)
-            .OnUpdate(_ => Debug.Log("Growing..."))
-            .OnComplete(_ => Debug.Log("Grown!"));
+            .Time(5f)
+            .Random(4f)
+            .OnUpdate(t => tile.SetEntitySprite(wheatProgressSprites[(int)(Mathf.Clamp(t.progress * 2f, 0, 2))]))
+            .OnComplete(_ => tile.Color = Config.colors.yellow);
     }
 
     public void Deinit()
@@ -27,7 +35,7 @@ public class Wheat : Entity
 
     public Sprite GetSprite()
     {
-        return Assets.wheat;
+        return Assets.Wheat_0;
     }
 
 }

@@ -44,7 +44,7 @@ public class Windmill : Entity
 
     public Sprite GetSprite()
     {
-        return Assets.windmill;
+        return Assets.Windmill;
     }
 
 }
