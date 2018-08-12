@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Momentum;
 
 public class Buttons : MonoBehaviour
 {
@@ -19,8 +20,25 @@ public class Buttons : MonoBehaviour
     {
         hirePeasant.onClick.AddListener(() =>
         {
-            Tile t = Controller.Instance.grid.FindClosestTileWithEntity(new Pos(), typeof(Townhall), CommanderID.Player);
-            Hatchery.SpawnPeasant(t.pos.x, t.pos.y, CommanderID.Player);
+            Commander com = Controller.Instance.commanders[CommanderID.Player];
+
+            if (Config.prices.peasant <= com.wheat)
+            {
+                Tile t = Controller.Instance.grid.FindClosestTileWithEntity(new Pos(), typeof(Townhall), CommanderID.Player);
+                Hatchery.SpawnPeasant(t.pos.x, t.pos.y, CommanderID.Player);
+
+                Task.Add().Time(0.03f).Random(0.015f).Loop(Config.prices.peasant).OnRepeat(_ =>
+                {
+                    Controller.Instance.commanders[CommanderID.Player].RemoveWheat();
+
+                    Controller.Instance.UI.AddResourceBit(
+                        Resource.Wheat,
+                        Controller.Instance.UI.Wheat.position,
+                        t.transform.position,
+                        () => { }
+                    );
+                });
+            }
         });
 
         constructHouse.onClick.AddListener(() => StartBuilding(Building.House));

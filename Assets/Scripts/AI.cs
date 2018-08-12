@@ -30,6 +30,16 @@ public class AI
         commands.Add(Building.Castle);
         commands.Add(Building.House);
         commands.Add(Building.Castle);
+        commands.Add(Building.House);
+        commands.Add(Building.Windmill);
+        commands.Add(Building.Windmill);
+        commands.Add(Building.House);
+        commands.Add(Building.House);
+        commands.Add(Building.Lumberyard);
+        commands.Add(Building.Tower);
+        commands.Add(Building.Tower);
+        commands.Add(Building.House);
+        commands.Add(Building.House);
 
         Task.Add().Time(5f).Random(4f).Loop(-1).OnRepeat(_ =>
         {

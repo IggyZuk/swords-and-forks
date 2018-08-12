@@ -5,6 +5,7 @@ using Momentum;
 public class UI : MonoBehaviour
 {
     [SerializeField] RectTransform root;
+    [SerializeField] Text populationLabel;
     [SerializeField] Text lumberLabel;
     [SerializeField] Text wheatLabel;
     [SerializeField] RectTransform lumberIcon;

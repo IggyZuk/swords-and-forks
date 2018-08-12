@@ -56,6 +56,7 @@ public class Commander
     public void RemoveLumber(int count = 1)
     {
         lumber -= count;
+        lumber = Mathf.Clamp(lumber, 0, int.MaxValue);
     }
 
     public void AddWheat(int count = 1)
@@ -66,5 +67,6 @@ public class Commander
     public void RemoveWheat(int count = 1)
     {
         wheat -= count;
+        wheat = Mathf.Clamp(wheat, 0, int.MaxValue);
     }
 }

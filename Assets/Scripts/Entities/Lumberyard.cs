@@ -17,7 +17,10 @@ public class Lumberyard : Entity
 
                 Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
 
-                Builder.Build(new Lumber(), randomNeighbour.x, randomNeighbour.y);
+                Lumber l = new Lumber();
+                l.level = level;
+
+                Builder.Build(l, randomNeighbour.x, randomNeighbour.y);
             });
     }
 

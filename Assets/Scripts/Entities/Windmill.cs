@@ -37,7 +37,10 @@ public class Windmill : Entity
 
                 Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
 
-                Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y);
+                Wheat w = new Wheat();
+                w.level = level;
+
+                Builder.Build(w, randomNeighbour.x, randomNeighbour.y);
             });
     }
 

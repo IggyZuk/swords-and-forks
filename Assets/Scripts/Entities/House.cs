@@ -8,7 +8,7 @@ public class House : Entity
 
     public override void Init()
     {
-        updateTask = Task.Add().Time(30f).Random(30f).Loop(-1).OnRepeat(_ =>
+        updateTask = Task.Add().Time(15).Random(15).Loop(-1).OnRepeat(_ =>
         {
             if (peasant == null)
             {
