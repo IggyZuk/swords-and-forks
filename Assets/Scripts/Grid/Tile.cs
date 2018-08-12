@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using TMPro;
 using Momentum;
+using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] Image entityImage;
     [SerializeField] Image borderImage;
@@ -88,5 +89,26 @@ public class Tile : MonoBehaviour
             {
                 borderImage.color = border;
             });
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //TODO: show in desc
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Commander com = Controller.Instance.commanders[CommanderID.Player];
+        if (com.building != Building.None)
+        {
+            com.Build(Builder.BuildingToEntity(com.building), pos.x, pos.y);
+            com.building = Building.None;
+
+            Controller.Instance.UI.Buttons.EnableAll();
+        }
     }
 }

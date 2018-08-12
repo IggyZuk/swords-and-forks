@@ -30,7 +30,6 @@ public class Lumber : Entity
             {
                 isGrown = true;
                 tile.SetEntityColor(Config.colors.green);
-                Task.Add().Time(99999f).OnComplete(__ => tile.Entity = null);
             });
     }
 

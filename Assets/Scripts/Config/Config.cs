@@ -12,9 +12,11 @@ public static class Config
         public Color yellow = new Color32(255, 196, 56, 255);
         public Color green = new Color32(16, 200, 64, 255);
         public Color purple = new Color32(40, 35, 123, 255);
+        public Color pink = new Color32(201, 92, 209, 255);
     }
 
     public static Colors colors = new Colors();
 
-    public static int HungerMax = 5;
+    public const int HungerMax = 5;
+    public const int EnergyMax = 15;
 }

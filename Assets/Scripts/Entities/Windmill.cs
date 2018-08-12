@@ -66,7 +66,7 @@ public class Windmill : Entity
                     Resource.Wheat,
                     tile.transform.position,
                     Controller.Instance.UI.Wheat.position,
-                    () => Controller.Instance.commanders[comID].AddWheat(count)
+                    () => Controller.Instance.commanders[comID].AddWheat()
                 );
             });
         }

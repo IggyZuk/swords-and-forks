@@ -15,6 +15,8 @@ public class Commander
 
     public CommanderID comID;
 
+    public Building building = Building.None;
+
     public Commander(int lumber, int wheat, Color color, CommanderID comID)
     {
         this.lumber = lumber;

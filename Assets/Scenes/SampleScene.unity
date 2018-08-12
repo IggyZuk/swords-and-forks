@@ -258,6 +258,7 @@ MonoBehaviour:
   wheatLabel: {fileID: 218957868}
   lumberIcon: {fileID: 1803112760}
   wheatIcon: {fileID: 48935666}
+  buttons: {fileID: 1180023824}
 --- !u!1 &89362790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1265,7 @@ GameObject:
   - component: {fileID: 892940698}
   - component: {fileID: 892940700}
   - component: {fileID: 892940699}
+  - component: {fileID: 892940701}
   m_Layer: 5
   m_Name: Empty
   m_TagString: Untagged
@@ -1323,6 +1325,47 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 892940697}
   m_CullTransparentMesh: 0
+--- !u!114 &892940701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 892940697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 892940699}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &975873943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1180023822}
   - component: {fileID: 1180023823}
+  - component: {fileID: 1180023824}
   m_Layer: 5
   m_Name: UIGrid
   m_TagString: Untagged
@@ -1735,6 +1779,26 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1180023824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1180023821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774ca66cfa6058f4f8bbea4a381956a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hirePeasant: {fileID: 1647778459}
+  hireKnight: {fileID: 304754789}
+  constructHouse: {fileID: 2042822435}
+  constructLumberyard: {fileID: 1017318576}
+  constructWindmill: {fileID: 1078334844}
+  constructTower: {fileID: 534682539}
+  constructCastle: {fileID: 1440880861}
+  emptyBlock0: {fileID: 1293956719}
+  emptyBlock1: {fileID: 892940701}
 --- !u!1 &1293956715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,6 +1809,7 @@ GameObject:
   - component: {fileID: 1293956716}
   - component: {fileID: 1293956718}
   - component: {fileID: 1293956717}
+  - component: {fileID: 1293956719}
   m_Layer: 5
   m_Name: Empty
   m_TagString: Untagged
@@ -1804,6 +1869,47 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293956715}
   m_CullTransparentMesh: 0
+--- !u!114 &1293956719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1293956715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1293956717}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1375742340
 GameObject:
   m_ObjectHideFlags: 0

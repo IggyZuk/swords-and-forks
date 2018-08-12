@@ -14,6 +14,7 @@ public class Peasant : MonoBehaviour
     CommanderID comID;
 
     int hunger = Config.HungerMax;
+    int energy = Config.EnergyMax;
     Resource resource = Resource.None;
 
     Task updateTask;
@@ -62,6 +63,8 @@ public class Peasant : MonoBehaviour
                     Core.Juggler.Remove(movementTask);
                 }
                 Object.Destroy(this.gameObject);
+
+                Hatchery.SpawnEffect(pos.x, pos.y, Config.colors.pink);
             }
         });
     }
@@ -154,8 +157,6 @@ public class Peasant : MonoBehaviour
         Vector2 origin = originTile.transform.position;
         Vector2 target = targetTile.transform.position;
 
-        pos = targetPos;
-
         movementTask = Task.Add()
            .Time(1f)
            .Random(0.25f)
@@ -165,6 +166,8 @@ public class Peasant : MonoBehaviour
            })
            .OnComplete(t =>
            {
+               pos = targetPos;
+
                movementTask = null;
 
                targetTile.Glow(Controller.Instance.commanders[comID].color);
@@ -227,11 +230,19 @@ public class Peasant : MonoBehaviour
                          () => Controller.Instance.commanders[comID].RemoveWheat()
                      );
                 }
+                else
+                {
+                    Controller.Instance.commanders[comID].RemoveWheat();
+                }
             }
             else
             {
                 isActive = false;
             }
+        }
+        if (--hunger <= 0)
+        {
+            // TODO: go to townhall and rest
         }
     }
 

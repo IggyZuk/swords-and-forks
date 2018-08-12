@@ -6,6 +6,7 @@ public static class Assets
     public static Tile Tile;
     public static Peasant Peasant;
     public static ResourceBit ResourceBit;
+    public static Effect Effect;
 
     public static Sprite Wheat0;
     public static Sprite Wheat1;
@@ -29,6 +30,14 @@ public static class Assets
     public static Sprite Castle;
     public static Sprite Tower;
 
+    public static Sprite Effect0;
+    public static Sprite Effect1;
+    public static Sprite Effect2;
+    public static Sprite Effect3;
+    public static Sprite Effect4;
+    public static Sprite Effect5;
+    public static Sprite Effect6;
+
     public static void Configure()
     {
         LoadPrefabs();
@@ -41,6 +50,7 @@ public static class Assets
         Tile = Resources.Load<Tile>(path + "Tile");
         Peasant = Resources.Load<Peasant>(path + "Peasant");
         ResourceBit = Resources.Load<ResourceBit>(path + "ResourceBit");
+        Effect = Resources.Load<Effect>(path + "Effect");
     }
 
     static void LoadSprites()
@@ -70,5 +80,13 @@ public static class Assets
         Lumberyard = atlas.Single(s => s.name == "lumberyard");
         Castle = atlas.Single(s => s.name == "castle");
         Tower = atlas.Single(s => s.name == "tower");
+
+        Effect0 = atlas.Single(s => s.name == "effect0");
+        Effect1 = atlas.Single(s => s.name == "effect1");
+        Effect2 = atlas.Single(s => s.name == "effect2");
+        Effect3 = atlas.Single(s => s.name == "effect3");
+        Effect4 = atlas.Single(s => s.name == "effect4");
+        Effect5 = atlas.Single(s => s.name == "effect5");
+        Effect6 = atlas.Single(s => s.name == "effect6");
     }
 }

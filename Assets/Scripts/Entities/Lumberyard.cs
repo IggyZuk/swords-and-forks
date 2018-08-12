@@ -45,7 +45,7 @@ public class Lumberyard : Entity
                     Resource.Lumber,
                     tile.transform.position,
                     Controller.Instance.UI.Lumber.position,
-                    () => Controller.Instance.commanders[comID].AddLumber(count)
+                    () => Controller.Instance.commanders[comID].AddLumber()
                 );
             });
         }

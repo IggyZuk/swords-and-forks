@@ -10,9 +10,12 @@ public class UI : MonoBehaviour
     [SerializeField] RectTransform lumberIcon;
     [SerializeField] RectTransform wheatIcon;
 
+    [SerializeField] Buttons buttons;
+
     public RectTransform Root { get { return root; } }
     public RectTransform Lumber { get { return lumberIcon; } }
     public RectTransform Wheat { get { return wheatIcon; } }
+    public Buttons Buttons { get { return buttons; } }
 
     public void UpdateResources()
     {

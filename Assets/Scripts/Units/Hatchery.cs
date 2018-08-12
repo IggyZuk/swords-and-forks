@@ -10,4 +10,13 @@ public static class Hatchery
         peasant.transform.position = Controller.Instance.grid.GetTile(x, y).transform.position;
         return peasant;
     }
+
+    public static Effect SpawnEffect(int x, int y, Color color)
+    {
+        Effect effect = Object.Instantiate(Assets.Effect);
+        effect.transform.SetParent(Controller.Instance.UI.Root, false);
+        effect.transform.position = Controller.Instance.grid.GetTile(x, y).transform.position;
+        effect.Init(color);
+        return effect;
+    }
 }
