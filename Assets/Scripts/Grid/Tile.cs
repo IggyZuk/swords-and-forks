@@ -11,8 +11,8 @@ public class Tile : MonoBehaviour
     public Pos pos;
 
     Entity entity;
-    Color color;
     int level;
+    Color border;
 
     public Entity Entity
     {
@@ -33,14 +33,13 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public Color Color
+    public Color Border
     {
-        get { return color; }
+        get { return border; }
         set
         {
-            color = value;
+            border = value;
             borderImage.color = value;
-            entityImage.color = value;
         }
     }
 
@@ -57,6 +56,11 @@ public class Tile : MonoBehaviour
     public void SetEntitySprite(Sprite sprite)
     {
         entityImage.sprite = sprite;
+    }
+
+    public void SetEntityColor(Color color)
+    {
+        entityImage.color = color;
     }
 
     public void Tick()

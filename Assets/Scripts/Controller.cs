@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Controller : MonoBehaviour
 {
     public static Controller Instance { get; private set; }
 
-    public Grid grid;
+    public Dictionary<CommanderID, Commander> commanders = new Dictionary<CommanderID, Commander>();
 
-    public Commander player;
-    public Commander opponent;
+    public Grid grid;
+    public RectTransform unitsRoot;
 
     void Awake()
     {
@@ -15,13 +16,15 @@ public class Controller : MonoBehaviour
 
         Assets.Configure();
 
-        player = new Commander(5, 5, Config.colors.blue);
-        opponent = new Commander(5, 5, Config.colors.red);
+        commanders.Add(CommanderID.Player, new Commander(5, 5, Config.colors.blue));
+        commanders.Add(CommanderID.Opponent, new Commander(5, 5, Config.colors.red));
 
         grid.Build(6, 6, 36);
 
-        player.Build(new Windmill(), 1, 1);
-        opponent.Build(new Windmill(), 4, 4);
+        commanders[CommanderID.Player].Build(new Windmill(), 1, 1);
+        commanders[CommanderID.Opponent].Build(new Windmill(), 4, 4);
+
+        Peasant p = Hatchery.SpawnPeasant(4, 4, CommanderID.Player);
     }
 
     void FixedUpdate()

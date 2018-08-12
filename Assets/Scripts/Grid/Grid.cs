@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Grid : MonoBehaviour
 {
@@ -19,13 +20,20 @@ public class Grid : MonoBehaviour
                 Tile tile = Instantiate(Assets.Tile);
                 tiles[x, y] = tile;
                 tile.pos = new Pos(x, y);
-                tile.transform.SetParent(this.transform);
+                tile.transform.SetParent(this.transform, false);
 
                 tile.Entity = null;
-                tile.Color = Config.colors.neutral;
+                tile.Border = Config.colors.neutral;
                 tile.Level = 0;
             }
         }
+
+        Canvas.ForceUpdateCanvases();
+    }
+
+    public Tile GetTile(Pos pos)
+    {
+        return GetTile(pos.x, pos.y);
     }
 
     public Tile GetTile(int x, int y)
@@ -39,6 +47,32 @@ public class Grid : MonoBehaviour
         }
 
         return tiles[x, y];
+    }
+
+    public Pos[] GetNeighbours(Pos pos)
+    {
+        return GetNeighbours(pos.x, pos.y);
+    }
+
+    public Pos[] GetNeighbours(int x, int y)
+    {
+        int w = tiles.GetLength(0);
+        int h = tiles.GetLength(1);
+
+        List<Pos> neighbours = new List<Pos>();
+
+        if (x - 1 >= 0) neighbours.Add(new Pos(x - 1, y));
+        if (x + 1 < w) neighbours.Add(new Pos(x + 1, y));
+        if (y - 1 >= 0) neighbours.Add(new Pos(x, y - 1));
+        if (y + 1 < h) neighbours.Add(new Pos(x, y + 1));
+
+        if (x - 1 >= 0 && y - 1 >= 0) neighbours.Add(new Pos(x - 1, y - 1));
+        if (x + 1 < w && y - 1 >= 0) neighbours.Add(new Pos(x + 1, y - 1));
+        if (x - 1 >= 0 && y + 1 < h) neighbours.Add(new Pos(x - 1, y + 1));
+        if (x + 1 < w && y + 1 < h) neighbours.Add(new Pos(x + 1, y + 1));
+
+        return neighbours.ToArray();
+
     }
 
     public void TickAll()

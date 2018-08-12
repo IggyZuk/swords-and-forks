@@ -4,28 +4,26 @@ using Momentum;
 public class Windmill : Entity
 {
     Tile tile;
-    Task task;
+
+    Task wheatGrowingTask;
+    Task animationTask;
 
     public void Init(Tile tile)
     {
         this.tile = tile;
 
-        task = Task.Add()
-            .Time(1f)
+        animationTask = Task.Add()
+           .Time(0.5f)
+           .Loop(-1)
+           .OnRepeat(t => tile.SetEntitySprite(t.currentLoop % 2 == 0 ? Assets.Windmill_0 : Assets.Windmill_1));
+
+        wheatGrowingTask = Task.Add()
+            .Time(5f)
             .Loop(-1)
-            .Random(0.5f)
+            .Random(2.5f)
             .OnRepeat(_ =>
             {
-                Pos[] neighbours = {
-                    new Pos(tile.pos.x - 1, tile.pos.y),
-                    new Pos(tile.pos.x + 1, tile.pos.y),
-                    new Pos(tile.pos.x, tile.pos.y - 1),
-                    new Pos(tile.pos.x, tile.pos.y + 1),
-                    new Pos(tile.pos.x - 1, tile.pos.y - 1),
-                    new Pos(tile.pos.x + 1, tile.pos.y - 1),
-                    new Pos(tile.pos.x - 1, tile.pos.y + 1),
-                    new Pos(tile.pos.x + 1, tile.pos.y + 1),
-                };
+                Pos[] neighbours = Controller.Instance.grid.GetNeighbours(tile.pos);
 
                 Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
 
@@ -35,7 +33,8 @@ public class Windmill : Entity
 
     public void Deinit()
     {
-        Core.Juggler.Remove(task);
+        Core.Juggler.Remove(animationTask);
+        Core.Juggler.Remove(wheatGrowingTask);
     }
 
     public void Tick()
@@ -44,7 +43,7 @@ public class Windmill : Entity
 
     public Sprite GetSprite()
     {
-        return Assets.Windmill;
+        return Assets.Windmill_0;
     }
 
 }

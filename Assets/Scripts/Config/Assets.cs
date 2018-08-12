@@ -4,6 +4,7 @@ using UnityEngine;
 public static class Assets
 {
     public static Tile Tile;
+    public static Peasant Peasant;
 
     public static Sprite Wheat_0;
     public static Sprite Wheat_1;
@@ -15,7 +16,8 @@ public static class Assets
 
     public static Sprite Townhall;
     public static Sprite House;
-    public static Sprite Windmill;
+    public static Sprite Windmill_0;
+    public static Sprite Windmill_1;
     public static Sprite Lumberyard;
     public static Sprite Castle;
     public static Sprite Tower;
@@ -30,6 +32,7 @@ public static class Assets
         string path = "Prefabs/";
 
         Tile = Resources.Load<Tile>(path + "Tile");
+        Peasant = Resources.Load<Peasant>(path + "Peasant");
     }
 
     static void LoadSprites()
@@ -48,7 +51,8 @@ public static class Assets
 
         Townhall = atlas.Single(s => s.name == "ld32-tileset_3");
         House = atlas.Single(s => s.name == "ld32-tileset_4");
-        Windmill = atlas.Single(s => s.name == "ld32-tileset_5");
+        Windmill_0 = atlas.Single(s => s.name == "ld32-tileset_5");
+        Windmill_1 = atlas.Single(s => s.name == "ld32-tileset_29");
         Lumberyard = atlas.Single(s => s.name == "ld32-tileset_6");
         Castle = atlas.Single(s => s.name == "ld32-tileset_7");
         Tower = atlas.Single(s => s.name == "ld32-tileset_8");

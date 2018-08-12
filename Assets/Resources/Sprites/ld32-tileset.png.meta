@@ -31,6 +31,7 @@ TextureImporter:
     21300052: ld32-tileset_26
     21300054: ld32-tileset_27
     21300056: ld32-tileset_28
+    21300058: ld32-tileset_29
   externalObjects: {}
   serializedVersion: 6
   mipmaps:
@@ -721,6 +722,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 731fcc9523a8f7043bcb3e1a490633ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ld32-tileset_29
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 216
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02c9d4c7982c47628368ba657ddbff6
       vertices: []
       indices: 
       edges: []

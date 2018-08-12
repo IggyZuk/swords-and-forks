@@ -10,7 +10,9 @@ public class Wheat : Entity
     {
         this.tile = tile;
 
-        Sprite[] wheatProgressSprites = new Sprite[]
+        tile.SetEntityColor(Config.colors.neutral);
+
+        Sprite[] wheatProgressSprites = 
         {
             Assets.Wheat_0,
             Assets.Wheat_1,
@@ -18,10 +20,14 @@ public class Wheat : Entity
         };
 
         task = Task.Add()
-            .Time(5f)
-            .Random(4f)
+            .Time(10f)
+            .Random(5f)
             .OnUpdate(t => tile.SetEntitySprite(wheatProgressSprites[(int)(Mathf.Clamp(t.progress * 2f, 0, 2))]))
-            .OnComplete(_ => tile.Color = Config.colors.yellow);
+            .OnComplete(_ =>
+            {
+                tile.SetEntityColor(Config.colors.yellow);
+                Task.Add().Time(10f).OnComplete(__ => tile.Entity = null);
+            });
     }
 
     public void Deinit()

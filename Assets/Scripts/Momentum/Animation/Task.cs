@@ -37,8 +37,8 @@ namespace Momentum
         public float currentDelay { get { return _currentDelay; } }
         public float delay { get { return _delay; } }
 
-        public float currentLoop { get { return _currentLoops; } }
-        public float loops { get { return _loops; } }
+        public int currentLoop { get { return _currentLoops; } }
+        public int loops { get { return _loops; } }
 
         public static Task Add()
         {

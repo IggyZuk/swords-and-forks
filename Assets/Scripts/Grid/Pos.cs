@@ -1,9 +1,9 @@
-﻿public class Pos
+﻿public struct Pos
 {
-    public int x = 0;
-    public int y = 0;
+    public int x;
+    public int y;
 
-    public Pos(int x, int y)
+    public Pos(int x = 0, int y = 0)
     {
         this.x = x;
         this.y = y;

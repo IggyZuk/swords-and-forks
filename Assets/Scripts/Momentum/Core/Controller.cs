@@ -13,7 +13,7 @@ namespace Momentum
 
         void Update()
         {
-            Core.Juggler.Update(Time.deltaTime);
+            Core.Juggler.Update(Time.deltaTime * (Input.GetKey(KeyCode.T) ? 16f : 1f));
         }
     }
 }
