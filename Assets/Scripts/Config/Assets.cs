@@ -5,6 +5,7 @@ public static class Assets
 {
     public static Tile Tile;
     public static Peasant Peasant;
+    public static ResourceBit ResourceBit;
 
     public static Sprite Wheat0;
     public static Sprite Wheat1;
@@ -39,6 +40,7 @@ public static class Assets
 
         Tile = Resources.Load<Tile>(path + "Tile");
         Peasant = Resources.Load<Peasant>(path + "Peasant");
+        ResourceBit = Resources.Load<ResourceBit>(path + "ResourceBit");
     }
 
     static void LoadSprites()

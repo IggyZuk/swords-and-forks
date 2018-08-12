@@ -131,16 +131,15 @@ public class Peasant : MonoBehaviour
                hunger--;
                //if (hunger <= 0) Object.Destroy(this.gameObject);
 
-               if (targetTile.Entity is Windmill)
+               if (resource == Resource.Wheat)
                {
-                   if (targetTile.Entity.comID == comID)
+                   if (targetTile.Entity is Windmill && targetTile.Entity.comID == comID)
                    {
-                       if (resource != Resource.None)
-                       {
-                           DropResource();
-                       }
+                       ((Windmill)targetTile.Entity).ProcessWheat();
+                       DropResource();
                    }
                }
+
 
                if (resource != Resource.None) return;
 
@@ -161,14 +160,12 @@ public class Peasant : MonoBehaviour
         resource = Resource.Wheat;
 
         resourceImage.enabled = true;
-        resourceImage.sprite = Assets.Wheat2;
+        resourceImage.sprite = Assets.Wheat4;
         resourceImage.color = Config.colors.yellow;
     }
 
     public void DropResource()
     {
-        // TODO: add resource to commander
-
         resource = Resource.None;
 
         resourceImage.enabled = false;

@@ -56,4 +56,18 @@ public class Windmill : Entity
         return Assets.Windmill0;
     }
 
+    public void ProcessWheat()
+    {
+        int count = level + 1;
+
+        Controller.Instance.commanders[comID].AddWheat(count);
+
+        if (comID == CommanderID.Player)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Controller.Instance.UI.AddResourceBit(Resource.Wheat, tile.pos);
+            }
+        }
+    }
 }

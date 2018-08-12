@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour
 
     public Dictionary<CommanderID, Commander> commanders = new Dictionary<CommanderID, Commander>();
 
+    public UI UI;
     public Grid grid;
     public RectTransform unitsRoot;
 
@@ -18,6 +19,8 @@ public class Controller : MonoBehaviour
 
         commanders.Add(CommanderID.Player, new Commander(5, 5, Config.colors.blue, CommanderID.Player));
         commanders.Add(CommanderID.Opponent, new Commander(5, 5, Config.colors.red, CommanderID.Opponent));
+
+        UI.UpdateResources();
 
         grid.Build(6, 6, 36);
 
