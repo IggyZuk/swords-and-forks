@@ -23,9 +23,9 @@ public class Controller : MonoBehaviour
 
         commanders[CommanderID.Player].Build(new Windmill(), 4, 4);
         commanders[CommanderID.Opponent].Build(new Windmill(), 1, 1);
-        commanders[CommanderID.Opponent].Build(new Windmill(), 2, 1);
+        commanders[CommanderID.Opponent].Build(new Windmill(), 3, 1);
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             Hatchery.SpawnPeasant(4, 4, CommanderID.Player);
         }

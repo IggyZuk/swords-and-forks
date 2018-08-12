@@ -26,7 +26,7 @@ public class Wheat : Entity
             {
                 isGrown = true;
                 tile.SetEntityColor(Config.colors.yellow);
-                Task.Add().Time(100f).OnComplete(__ => tile.Entity = null);
+                Task.Add().Time(99999f).OnComplete(__ => tile.Entity = null);
             });
     }
 

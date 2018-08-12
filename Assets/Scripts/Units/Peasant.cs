@@ -33,20 +33,41 @@ public class Peasant : MonoBehaviour
         {
             if (movementTask != null) return;
 
-            if (resource != Resource.None)
+            if (path.Count > 0)
+            {
+                MoveTo(path[0]);
+                path.RemoveAt(0);
+                return;
+            }
+
+            if (resource == Resource.None)
+            {
+                Pos[] ns = Controller.Instance.grid.GetNeighbours(pos);
+                foreach (var n in ns)
+                {
+                    Tile nt = Controller.Instance.grid.GetTile(n);
+                    if (nt.Entity is Wheat)
+                    {
+                        Wheat w = nt.Entity as Wheat;
+                        if (w.isGrown)
+                        {
+                            path = CalculatePath(pos, nt.pos);
+
+                            if (path.Count > 0)
+                            {
+                                MoveTo(path[0]);
+                                path.RemoveAt(0);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            else
             {
                 //TODO: find closes windmill
-
-                if (path.Count > 0)
-                {
-                    MoveTo(path[0]);
-                    path.RemoveAt(0);
-                    return;
-                }
-
                 Tile windmill = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Windmill), comID);
                 path = CalculatePath(pos, windmill.pos);
-                path.ForEach(g => Debug.Log(g));
 
                 if (path.Count > 0)
                 {
