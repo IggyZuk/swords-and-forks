@@ -6,18 +6,24 @@ public static class Assets
     public static Tile Tile;
     public static Peasant Peasant;
 
-    public static Sprite Wheat_0;
-    public static Sprite Wheat_1;
-    public static Sprite Wheat_2;
+    public static Sprite Wheat0;
+    public static Sprite Wheat1;
+    public static Sprite Wheat2;
+    public static Sprite Wheat3;
+    public static Sprite Wheat4;
 
-    public static Sprite Tree_0;
-    public static Sprite Tree_1;
-    public static Sprite Tree_2;
+    public static Sprite Tree0;
+    public static Sprite Tree1;
+    public static Sprite Tree2;
+    public static Sprite Tree3;
+    public static Sprite Tree4;
+
+    public static Sprite Windmill0;
+    public static Sprite Windmill1;
+    public static Sprite Windmill2;
 
     public static Sprite Townhall;
     public static Sprite House;
-    public static Sprite Windmill_0;
-    public static Sprite Windmill_1;
     public static Sprite Lumberyard;
     public static Sprite Castle;
     public static Sprite Tower;
@@ -41,20 +47,26 @@ public static class Assets
 
         Sprite[] atlas = Resources.LoadAll<Sprite>(path + "ld32-tileset");
 
-        Wheat_0 = atlas.Single(s => s.name == "ld32-tileset_9");
-        Wheat_1 = atlas.Single(s => s.name == "ld32-tileset_10");
-        Wheat_2 = atlas.Single(s => s.name == "ld32-tileset_11");
+        Wheat0 = atlas.Single(s => s.name == "wheat0");
+        Wheat1 = atlas.Single(s => s.name == "wheat1");
+        Wheat2 = atlas.Single(s => s.name == "wheat2");
+        Wheat3 = atlas.Single(s => s.name == "wheat3");
+        Wheat4 = atlas.Single(s => s.name == "wheat4");
 
-        Tree_0 = atlas.Single(s => s.name == "ld32-tileset_12");
-        Tree_1 = atlas.Single(s => s.name == "ld32-tileset_13");
-        Tree_2 = atlas.Single(s => s.name == "ld32-tileset_14");
+        Tree0 = atlas.Single(s => s.name == "tree0");
+        Tree1 = atlas.Single(s => s.name == "tree1");
+        Tree2 = atlas.Single(s => s.name == "tree2");
+        Tree3 = atlas.Single(s => s.name == "tree3");
+        Tree4 = atlas.Single(s => s.name == "tree4");
 
-        Townhall = atlas.Single(s => s.name == "ld32-tileset_3");
-        House = atlas.Single(s => s.name == "ld32-tileset_4");
-        Windmill_0 = atlas.Single(s => s.name == "ld32-tileset_5");
-        Windmill_1 = atlas.Single(s => s.name == "ld32-tileset_29");
-        Lumberyard = atlas.Single(s => s.name == "ld32-tileset_6");
-        Castle = atlas.Single(s => s.name == "ld32-tileset_7");
-        Tower = atlas.Single(s => s.name == "ld32-tileset_8");
+        Windmill0 = atlas.Single(s => s.name == "windmill0");
+        Windmill1 = atlas.Single(s => s.name == "windmill1");
+        Windmill2 = atlas.Single(s => s.name == "windmill2");
+
+        Townhall = atlas.Single(s => s.name == "townhall");
+        House = atlas.Single(s => s.name == "house");
+        Lumberyard = atlas.Single(s => s.name == "lumberyard");
+        Castle = atlas.Single(s => s.name == "castle");
+        Tower = atlas.Single(s => s.name == "tower");
     }
 }

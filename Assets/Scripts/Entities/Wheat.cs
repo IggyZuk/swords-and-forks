@@ -11,17 +11,21 @@ public class Wheat : Entity
     {
         tile.SetEntityColor(Config.colors.neutral);
 
-        Sprite[] wheatProgressSprites = 
+        Sprite[] animSprites =
         {
-            Assets.Wheat_0,
-            Assets.Wheat_1,
-            Assets.Wheat_2
+            Assets.Wheat0,
+            Assets.Wheat1,
+            Assets.Wheat2,
+            Assets.Wheat3,
+            Assets.Wheat4
         };
 
         task = Task.Add()
             .Time(10f)
             .Random(5f)
-            .OnUpdate(t => tile.SetEntitySprite(wheatProgressSprites[(int)(Mathf.Clamp(t.progress * 2f, 0, 2))]))
+            .OnUpdate(t => tile.SetEntitySprite(animSprites[
+                (int)(Mathf.Clamp(t.progress * animSprites.Length - 1, 0, animSprites.Length - 1))
+            ]))
             .OnComplete(_ =>
             {
                 isGrown = true;
@@ -41,7 +45,7 @@ public class Wheat : Entity
 
     public override Sprite GetSprite()
     {
-        return Assets.Wheat_0;
+        return Assets.Wheat0;
     }
 
 }

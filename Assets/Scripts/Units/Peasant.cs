@@ -161,7 +161,7 @@ public class Peasant : MonoBehaviour
         resource = Resource.Wheat;
 
         resourceImage.enabled = true;
-        resourceImage.sprite = Assets.Wheat_2;
+        resourceImage.sprite = Assets.Wheat2;
         resourceImage.color = Config.colors.yellow;
     }
 

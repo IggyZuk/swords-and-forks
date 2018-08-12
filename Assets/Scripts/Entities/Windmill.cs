@@ -8,10 +8,24 @@ public class Windmill : Entity
 
     public override void Init()
     {
+        int animIndex = 0;
+        Sprite[] animSprites =
+        {
+            Assets.Windmill0,
+            Assets.Windmill1,
+            Assets.Windmill2
+        };
+
         animationTask = Task.Add()
-           .Time(0.5f)
+           .Time(0.25f)
            .Loop(-1)
-           .OnRepeat(t => tile.SetEntitySprite(t.currentLoop % 2 == 0 ? Assets.Windmill_0 : Assets.Windmill_1));
+           .OnRepeat(t =>
+           {
+               tile.SetEntitySprite(animSprites[animIndex]);
+
+               animIndex++;
+               animIndex = animIndex %= animSprites.Length;
+           });
 
         wheatGrowingTask = Task.Add()
             .Time(5f)
@@ -39,7 +53,7 @@ public class Windmill : Entity
 
     public override Sprite GetSprite()
     {
-        return Assets.Windmill_0;
+        return Assets.Windmill0;
     }
 
 }
