@@ -6,6 +6,8 @@ public class Wheat : Entity
     Tile tile;
     Task task;
 
+    public bool isGrown = false;
+
     public void Init(Tile tile)
     {
         this.tile = tile;
@@ -25,8 +27,9 @@ public class Wheat : Entity
             .OnUpdate(t => tile.SetEntitySprite(wheatProgressSprites[(int)(Mathf.Clamp(t.progress * 2f, 0, 2))]))
             .OnComplete(_ =>
             {
+                isGrown = true;
                 tile.SetEntityColor(Config.colors.yellow);
-                Task.Add().Time(10f).OnComplete(__ => tile.Entity = null);
+                Task.Add().Time(500f).OnComplete(__ => tile.Entity = null);
             });
     }
 

@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   outline: {fileID: 0}
-  resource: {fileID: 0}
+  resourceImage: {fileID: 0}
 --- !u!114 &114713094281847514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 114732123038522888}
   outline: {fileID: 114713094281847514}
-  resource: {fileID: 114738820132616096}
+  resourceImage: {fileID: 114738820132616096}
 --- !u!222 &222286214585717258
 CanvasRenderer:
   m_ObjectHideFlags: 1

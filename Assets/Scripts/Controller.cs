@@ -21,10 +21,18 @@ public class Controller : MonoBehaviour
 
         grid.Build(6, 6, 36);
 
-        commanders[CommanderID.Player].Build(new Windmill(), 1, 1);
-        commanders[CommanderID.Opponent].Build(new Windmill(), 4, 4);
+        commanders[CommanderID.Player].Build(new Windmill(), 4, 4);
+        commanders[CommanderID.Opponent].Build(new Windmill(), 1, 1);
 
-        Peasant p = Hatchery.SpawnPeasant(4, 4, CommanderID.Player);
+        for (int i = 0; i < 3; i++)
+        {
+            Hatchery.SpawnPeasant(4, 4, CommanderID.Player);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            Hatchery.SpawnPeasant(1, 1, CommanderID.Opponent);
+        }
     }
 
     void FixedUpdate()

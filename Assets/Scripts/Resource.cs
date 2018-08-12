@@ -1,14 +1,6 @@
-﻿using UnityEngine;
-
-public class Resource : MonoBehaviour
+﻿public enum Resource
 {
-	void Awake()
-	{
-		
-	}
-
-	void Update()
-	{
-		
-	}
+    None,
+    Wheat,
+    Lumber
 }
