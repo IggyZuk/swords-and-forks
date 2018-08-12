@@ -33,6 +33,16 @@ public class Commander
         }
     }
 
+    public void AddLumber(int count = 1)
+    {
+        lumber += count;
+    }
+
+    public void RemoveLumber(int count = 1)
+    {
+        lumber -= count;
+    }
+
     public void AddWheat(int count = 1)
     {
         wheat += count;

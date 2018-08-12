@@ -3,8 +3,8 @@ using Momentum;
 
 public class Windmill : Entity
 {
-    Task wheatGrowingTask;
-    Task animationTask;
+    Task plantWheatTask;
+    Task animTask;
 
     public override void Init()
     {
@@ -16,7 +16,7 @@ public class Windmill : Entity
             Assets.Windmill2
         };
 
-        animationTask = Task.Add()
+        animTask = Task.Add()
            .Time(0.25f)
            .Loop(-1)
            .OnRepeat(t =>
@@ -27,7 +27,7 @@ public class Windmill : Entity
                animIndex = animIndex %= animSprites.Length;
            });
 
-        wheatGrowingTask = Task.Add()
+        plantWheatTask = Task.Add()
             .Time(5f)
             .Loop(-1)
             .Random(2.5f)
@@ -39,12 +39,14 @@ public class Windmill : Entity
 
                 Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y, CommanderID.None);
             });
+
+        level = 5;
     }
 
     public override void Deinit()
     {
-        Core.Juggler.Remove(animationTask);
-        Core.Juggler.Remove(wheatGrowingTask);
+        Core.Juggler.Remove(animTask);
+        Core.Juggler.Remove(plantWheatTask);
     }
 
     public override void Tick()
@@ -64,14 +66,14 @@ public class Windmill : Entity
 
         if (comID == CommanderID.Player)
         {
-            for (int i = 0; i < count; i++)
+            Task.Add().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
             {
                 Controller.Instance.UI.AddResourceBit(
                     Resource.Wheat,
                     tile.transform.position,
                     Controller.Instance.UI.Wheat.position
                 );
-            }
+            });
         }
     }
 }

@@ -10,7 +10,7 @@ public class ResourceBit : MonoBehaviour
         switch (resource)
         {
             case Resource.Lumber:
-                image.sprite = Assets.Tree4;
+                image.sprite = Assets.Lumber4;
                 image.color = Config.colors.green;
                 break;
             case Resource.Wheat:

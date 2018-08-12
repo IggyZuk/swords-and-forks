@@ -14,29 +14,29 @@ TextureImporter:
     21300018: wheat0
     21300020: wheat1
     21300022: wheat2
-    21300024: tree0
-    21300026: tree1
-    21300028: tree2
+    21300024: lumber0
+    21300026: lumber1
+    21300028: lumber2
     21300030: peasant_outline
     21300032: peasant
     21300034: knight_outline
     21300036: knight
-    21300038: ld32-tileset_19
-    21300040: ld32-tileset_20
-    21300042: ld32-tileset_21
-    21300044: ld32-tileset_22
-    21300046: ld32-tileset_23
-    21300048: ld32-tileset_24
-    21300050: ld32-tileset_25
-    21300052: ld32-tileset_26
-    21300054: ld32-tileset_27
-    21300056: ld32-tileset_28
+    21300038: button
+    21300040: button-peasant
+    21300042: button-knight
+    21300044: button-house
+    21300046: button-lumberyard
+    21300048: button-windmill
+    21300050: button-tower
+    21300052: button-castle
+    21300054: ui-box
+    21300056: palette
     21300058: windmill1
     21300060: windmill2
     21300062: wheat3
     21300064: wheat4
-    21300066: tree3
-    21300068: tree4
+    21300066: lumber3
+    21300068: lumber4
   externalObjects: {}
   serializedVersion: 6
   mipmaps:
@@ -392,7 +392,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree0
+      name: lumber0
       rect:
         serializedVersion: 2
         x: 0
@@ -412,7 +412,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree1
+      name: lumber1
       rect:
         serializedVersion: 2
         x: 36
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree2
+      name: lumber2
       rect:
         serializedVersion: 2
         x: 72
@@ -532,7 +532,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_19
+      name: button
       rect:
         serializedVersion: 2
         x: 0
@@ -552,7 +552,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_20
+      name: button-peasant
       rect:
         serializedVersion: 2
         x: 36
@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_21
+      name: button-knight
       rect:
         serializedVersion: 2
         x: 72
@@ -592,7 +592,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_22
+      name: button-house
       rect:
         serializedVersion: 2
         x: 108
@@ -612,7 +612,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_23
+      name: button-lumberyard
       rect:
         serializedVersion: 2
         x: 144
@@ -632,7 +632,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_24
+      name: button-windmill
       rect:
         serializedVersion: 2
         x: 180
@@ -652,7 +652,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_25
+      name: button-tower
       rect:
         serializedVersion: 2
         x: 216
@@ -672,7 +672,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_26
+      name: button-castle
       rect:
         serializedVersion: 2
         x: 252
@@ -692,7 +692,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_27
+      name: ui-box
       rect:
         serializedVersion: 2
         x: 0
@@ -712,7 +712,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ld32-tileset_28
+      name: palette
       rect:
         serializedVersion: 2
         x: 0
@@ -812,7 +812,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree3
+      name: lumber3
       rect:
         serializedVersion: 2
         x: 108
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tree4
+      name: lumber4
       rect:
         serializedVersion: 2
         x: 144

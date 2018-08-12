@@ -40,47 +40,67 @@ public class Peasant : MonoBehaviour
                 return;
             }
 
-            if (resource == Resource.None)
-            {
-                Pos[] ns = Controller.Instance.grid.GetNeighbours(pos);
-                foreach (var n in ns)
-                {
-                    Tile nt = Controller.Instance.grid.GetTile(n);
-                    if (nt.Entity is Wheat)
-                    {
-                        Wheat w = nt.Entity as Wheat;
-                        if (w.isGrown)
-                        {
-                            path = CalculatePath(pos, nt.pos);
+            path = PickNextPath();
 
-                            if (path.Count > 0)
-                            {
-                                MoveTo(path[0]);
-                                path.RemoveAt(0);
-                                return;
-                            }
-                        }
+            if (path.Count > 0)
+            {
+                MoveTo(path[0]);
+                path.RemoveAt(0);
+                return;
+            }
+
+            MoveToRandomNeighbour();
+        });
+    }
+
+    List<Pos> PickNextPath()
+    {
+        if (resource == Resource.None)
+        {
+            Pos[] ns = Controller.Instance.grid.GetNeighbours(pos);
+            foreach (var n in ns)
+            {
+                Tile nt = Controller.Instance.grid.GetTile(n);
+                if (nt.Entity is Lumber)
+                {
+                    if (((Lumber)nt.Entity).isGrown)
+                    {
+                        return CalculatePath(pos, nt.pos);
+                    }
+                }
+                else if (nt.Entity is Wheat)
+                {
+                    if (((Wheat)nt.Entity).isGrown)
+                    {
+                        return CalculatePath(pos, nt.pos);
                     }
                 }
             }
-            else
+        }
+        else if (resource == Resource.Lumber)
+        {
+            Tile t = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Lumberyard), comID);
+            if (t == null)
             {
-                //TODO: find closes windmill
-                Tile windmill = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Windmill), comID);
-                path = CalculatePath(pos, windmill.pos);
-
-                if (path.Count > 0)
-                {
-                    MoveTo(path[0]);
-                    path.RemoveAt(0);
-                    return;
-                }
+                DropResource();
+                return new List<Pos>();
             }
 
-            // Move to a random neighbour
-            Pos[] neighbours = Controller.Instance.grid.GetNeighbours(pos);
-            MoveTo(neighbours[Random.Range(0, neighbours.Length)]);
-        });
+            return CalculatePath(pos, t.pos);
+        }
+        else if (resource == Resource.Wheat)
+        {
+            Tile t = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Windmill), comID);
+            if (t == null)
+            {
+                DropResource();
+                return new List<Pos>();
+            }
+
+            return CalculatePath(pos, t.pos);
+        }
+
+        return new List<Pos>();
     }
 
     public List<Pos> CalculatePath(Pos from, Pos to)
@@ -103,6 +123,12 @@ public class Peasant : MonoBehaviour
         }
 
         return path;
+    }
+
+    void MoveToRandomNeighbour()
+    {
+        Pos[] neighbours = Controller.Instance.grid.GetNeighbours(pos);
+        MoveTo(neighbours[Random.Range(0, neighbours.Length)]);
     }
 
     public void MoveTo(Pos targetPos)
@@ -128,6 +154,7 @@ public class Peasant : MonoBehaviour
            {
                movementTask = null;
 
+               // TODO: die of starvation
                hunger--;
                if (hunger <= 0)
                {
@@ -135,18 +162,30 @@ public class Peasant : MonoBehaviour
 
                    Controller.Instance.commanders[comID].RemoveWheat();
 
-                   Controller.Instance.UI.AddResourceBit(
-                        Resource.Wheat,
-                        Controller.Instance.UI.Wheat.position,
-                        targetTile.transform.position
-                    );
+                   if (comID == CommanderID.Player)
+                   {
+                       Controller.Instance.UI.AddResourceBit(
+                            Resource.Wheat,
+                            Controller.Instance.UI.Wheat.position,
+                            targetTile.transform.position
+                        );
+                   }
 
                    //Object.Destroy(this.gameObject);
                }
 
                targetTile.Glow(Controller.Instance.commanders[comID].color);
 
-               if (resource == Resource.Wheat)
+
+               if (resource == Resource.Lumber)
+               {
+                   if (targetTile.Entity is Lumberyard && targetTile.Entity.comID == comID)
+                   {
+                       ((Lumberyard)targetTile.Entity).ProcessLumber();
+                       DropResource();
+                   }
+               }
+               else if (resource == Resource.Wheat)
                {
                    if (targetTile.Entity is Windmill && targetTile.Entity.comID == comID)
                    {
@@ -158,25 +197,43 @@ public class Peasant : MonoBehaviour
 
                if (resource != Resource.None) return;
 
-               if (targetTile.Entity is Wheat)
+               if (targetTile.Entity is Lumber)
                {
-                   Wheat wheat = targetTile.Entity as Wheat;
-                   if (wheat.isGrown)
+                   if (((Lumber)targetTile.Entity).isGrown)
                    {
                        targetTile.Entity = null;
-                       TakeWheat();
+                       TakeResource(Resource.Lumber);
+                   }
+               }
+               else if (targetTile.Entity is Wheat)
+               {
+                   if (((Wheat)targetTile.Entity).isGrown)
+                   {
+                       targetTile.Entity = null;
+                       TakeResource(Resource.Wheat);
                    }
                }
            });
     }
 
-    public void TakeWheat()
+    public void TakeResource(Resource resource)
     {
-        resource = Resource.Wheat;
+        this.resource = resource;
 
         resourceImage.enabled = true;
-        resourceImage.sprite = Assets.Wheat4;
-        resourceImage.color = Config.colors.yellow;
+
+        switch (resource)
+        {
+            case Resource.Lumber:
+                resourceImage.sprite = Assets.Lumber4;
+                resourceImage.color = Config.colors.green;
+                break;
+            case Resource.Wheat:
+                resourceImage.sprite = Assets.Wheat4;
+                resourceImage.color = Config.colors.yellow;
+                break;
+
+        }
     }
 
     public void DropResource()

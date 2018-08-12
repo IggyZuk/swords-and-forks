@@ -13,11 +13,11 @@ public static class Assets
     public static Sprite Wheat3;
     public static Sprite Wheat4;
 
-    public static Sprite Tree0;
-    public static Sprite Tree1;
-    public static Sprite Tree2;
-    public static Sprite Tree3;
-    public static Sprite Tree4;
+    public static Sprite Lumber0;
+    public static Sprite Lumber1;
+    public static Sprite Lumber2;
+    public static Sprite Lumber3;
+    public static Sprite Lumber4;
 
     public static Sprite Windmill0;
     public static Sprite Windmill1;
@@ -47,7 +47,7 @@ public static class Assets
     {
         string path = "Sprites/";
 
-        Sprite[] atlas = Resources.LoadAll<Sprite>(path + "ld32-tileset");
+        Sprite[] atlas = Resources.LoadAll<Sprite>(path + "tileset");
 
         Wheat0 = atlas.Single(s => s.name == "wheat0");
         Wheat1 = atlas.Single(s => s.name == "wheat1");
@@ -55,11 +55,11 @@ public static class Assets
         Wheat3 = atlas.Single(s => s.name == "wheat3");
         Wheat4 = atlas.Single(s => s.name == "wheat4");
 
-        Tree0 = atlas.Single(s => s.name == "tree0");
-        Tree1 = atlas.Single(s => s.name == "tree1");
-        Tree2 = atlas.Single(s => s.name == "tree2");
-        Tree3 = atlas.Single(s => s.name == "tree3");
-        Tree4 = atlas.Single(s => s.name == "tree4");
+        Lumber0 = atlas.Single(s => s.name == "lumber0");
+        Lumber1 = atlas.Single(s => s.name == "lumber1");
+        Lumber2 = atlas.Single(s => s.name == "lumber2");
+        Lumber3 = atlas.Single(s => s.name == "lumber3");
+        Lumber4 = atlas.Single(s => s.name == "lumber4");
 
         Windmill0 = atlas.Single(s => s.name == "windmill0");
         Windmill1 = atlas.Single(s => s.name == "windmill1");

@@ -25,10 +25,14 @@ public class Controller : MonoBehaviour
         grid.Build(6, 6, 36);
 
         commanders[CommanderID.Player].Build(new Windmill(), 4, 4);
-        commanders[CommanderID.Opponent].Build(new Windmill(), 1, 1);
-        commanders[CommanderID.Opponent].Build(new Windmill(), 3, 1);
+        commanders[CommanderID.Player].Build(new Lumberyard(), 2, 4);
+        commanders[CommanderID.Player].Build(new Townhall(), 0, 4);
 
-        for (int i = 0; i < 1; i++)
+        commanders[CommanderID.Opponent].Build(new Windmill(), 1, 1);
+        commanders[CommanderID.Opponent].Build(new Lumberyard(), 3, 1);
+        commanders[CommanderID.Opponent].Build(new Tower(), 0, 0);
+
+        for (int i = 0; i < 2; i++)
         {
             Hatchery.SpawnPeasant(4, 4, CommanderID.Player);
         }
