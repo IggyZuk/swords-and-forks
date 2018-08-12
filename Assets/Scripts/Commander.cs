@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Commander
 {
@@ -32,8 +33,13 @@ public class Commander
         }
     }
 
-    public void AddWheat(int count)
+    public void AddWheat(int count = 1)
     {
         wheat += count;
+    }
+
+    public void RemoveWheat(int count = 1)
+    {
+        wheat -= count;
     }
 }

@@ -12,8 +12,8 @@ public class Peasant : MonoBehaviour
     Pos pos = new Pos();
     CommanderID comID;
 
+    int hunger = Config.HungerMax;
     Resource resource = Resource.None;
-    int hunger = 10;
     Task movementTask;
 
     public void Init(int x, int y, CommanderID comID)
@@ -129,7 +129,22 @@ public class Peasant : MonoBehaviour
                movementTask = null;
 
                hunger--;
-               //if (hunger <= 0) Object.Destroy(this.gameObject);
+               if (hunger <= 0)
+               {
+                   hunger += Config.HungerMax;
+
+                   Controller.Instance.commanders[comID].RemoveWheat();
+
+                   Controller.Instance.UI.AddResourceBit(
+                        Resource.Wheat,
+                        Controller.Instance.UI.Wheat.position,
+                        targetTile.transform.position
+                    );
+
+                   //Object.Destroy(this.gameObject);
+               }
+
+               targetTile.Glow(Controller.Instance.commanders[comID].color);
 
                if (resource == Resource.Wheat)
                {

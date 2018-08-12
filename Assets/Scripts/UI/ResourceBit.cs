@@ -18,5 +18,6 @@ public class ResourceBit : MonoBehaviour
                 image.color = Config.colors.yellow;
                 break;
         }
+        image.color = Config.colors.white;
     }
 }

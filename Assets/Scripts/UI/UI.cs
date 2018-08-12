@@ -5,11 +5,12 @@ using Momentum;
 public class UI : MonoBehaviour
 {
     [SerializeField] RectTransform root;
-
     [SerializeField] Text lumberLabel;
     [SerializeField] Text wheatLabel;
 
-    RectTransform Root { get { return root; } }
+    public RectTransform Root { get { return root; } }
+    public RectTransform Lumber { get { return lumberLabel.transform as RectTransform; } }
+    public RectTransform Wheat { get { return wheatLabel.transform as RectTransform; } }
 
     public void UpdateResources()
     {
@@ -55,20 +56,17 @@ public class UI : MonoBehaviour
             });
     }
 
-    public void AddResourceBit(Resource resource, Pos pos)
+    public void AddResourceBit(Resource resource, Vector2 from, Vector2 to)
     {
         ResourceBit bit = Object.Instantiate(Assets.ResourceBit);
         bit.transform.SetParent(root, false);
         bit.Init(resource);
 
-        Vector3 from = Controller.Instance.grid.GetTile(pos).transform.position;
-        Vector3 to = wheatLabel.transform.position;
-
         Task.Add()
             .Time(0.5f)
             .OnUpdate(t =>
             {
-                bit.transform.position = Vector3.LerpUnclamped(from, to, Ease.OutBack(t.progress));
+                bit.transform.position = Vector3.LerpUnclamped(from, to, Ease.InOutSine(t.progress));
             })
             .OnComplete(_ =>
             {

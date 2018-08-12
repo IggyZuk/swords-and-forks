@@ -66,7 +66,11 @@ public class Windmill : Entity
         {
             for (int i = 0; i < count; i++)
             {
-                Controller.Instance.UI.AddResourceBit(Resource.Wheat, tile.pos);
+                Controller.Instance.UI.AddResourceBit(
+                    Resource.Wheat,
+                    tile.transform.position,
+                    Controller.Instance.UI.Wheat.position
+                );
             }
         }
     }

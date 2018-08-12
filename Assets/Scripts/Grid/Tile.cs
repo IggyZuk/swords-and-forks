@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Momentum;
 
 public class Tile : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Tile : MonoBehaviour
     Entity entity;
     int level;
     Color border;
+
+    Task glowTask;
 
     public Entity Entity
     {
@@ -67,5 +70,28 @@ public class Tile : MonoBehaviour
     public void Tick()
     {
         if (entity != null) entity.Tick();
+    }
+
+    public void Glow(Color color)
+    {
+        if (entity != null && entity.comID != CommanderID.None) return;
+
+        if (glowTask != null) Core.Juggler.Remove(glowTask);
+
+        glowTask = Task.Add()
+            .Time(5f)
+            .Random(0.5f)
+            .OnUpdate(tileGlowTask =>
+            {
+                borderImage.color = Color.Lerp(
+                    color,
+                    Config.colors.neutral,
+                    Ease.InOutSine(tileGlowTask.progress)
+                );
+            })
+            .OnComplete(_ =>
+            {
+                borderImage.color = border;
+            });
     }
 }
