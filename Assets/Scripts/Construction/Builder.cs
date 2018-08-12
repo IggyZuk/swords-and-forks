@@ -32,4 +32,25 @@
                 return null;
         }
     }
+
+    public static int CostOfBuilding(Building building)
+    {
+        switch (building)
+        {
+            case Building.Townhall:
+                return 100;
+            case Building.House:
+                return 2;
+            case Building.Lumberyard:
+                return 4;
+            case Building.Windmill:
+                return 4;
+            case Building.Tower:
+                return 10;
+            case Building.Castle:
+                return 20;
+            default:
+                return 0;
+        }
+    }
 }

@@ -13,6 +13,8 @@ public class Buttons : MonoBehaviour
     [SerializeField] Button emptyBlock0;
     [SerializeField] Button emptyBlock1;
 
+    [SerializeField] Text descriptionLabel;
+
     void Awake()
     {
         hirePeasant.onClick.AddListener(() =>
@@ -21,11 +23,19 @@ public class Buttons : MonoBehaviour
             Hatchery.SpawnPeasant(t.pos.x, t.pos.y, CommanderID.Player);
         });
 
-        constructHouse.onClick.AddListener(() =>
-        {
-            Controller.Instance.commanders[CommanderID.Player].building = Building.House;
-            DisableAll();
-        });
+        constructHouse.onClick.AddListener(() => StartBuilding(Building.House));
+        constructLumberyard.onClick.AddListener(() => StartBuilding(Building.Lumberyard));
+        constructWindmill.onClick.AddListener(() => StartBuilding(Building.Windmill));
+        constructTower.onClick.AddListener(() => StartBuilding(Building.Tower));
+        constructCastle.onClick.AddListener(() => StartBuilding(Building.Castle));
+    }
+
+    void StartBuilding(Building building)
+    {
+        Controller.Instance.commanders[CommanderID.Player].building = building;
+        DisableAll();
+
+        descriptionLabel.text = "Lumber: " + Builder.BuildingToEntity(building).GetPrice().ToString();
     }
 
     public void DisableAll()

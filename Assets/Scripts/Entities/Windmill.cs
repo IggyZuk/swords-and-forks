@@ -54,6 +54,11 @@ public class Windmill : Entity
         return Assets.Windmill0;
     }
 
+    public override int GetPrice()
+    {
+        return Config.prices.windmill;
+    }
+
     public void ProcessWheat()
     {
         int count = level + 1;

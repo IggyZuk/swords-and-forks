@@ -102,10 +102,11 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // TODO: check if enough resources
         Commander com = Controller.Instance.commanders[CommanderID.Player];
         if (com.building != Building.None)
         {
-            com.Build(Builder.BuildingToEntity(com.building), pos.x, pos.y);
+            com.TryBuild(Builder.BuildingToEntity(com.building), pos.x, pos.y);
             com.building = Building.None;
 
             Controller.Instance.UI.Buttons.EnableAll();

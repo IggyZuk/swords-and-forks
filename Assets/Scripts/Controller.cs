@@ -26,15 +26,17 @@ public class Controller : MonoBehaviour
 
         // TODO: pick random corners and spawn town hall
 
-        commanders[CommanderID.Player].Build(new Windmill(), 4, 4);
-        commanders[CommanderID.Player].Build(new Lumberyard(), 2, 4);
-        commanders[CommanderID.Player].Build(new Townhall(), 0, 4);
-        commanders[CommanderID.Player].Build(new House(), 1, 5);
+        commanders[CommanderID.Player].TryBuild(new Townhall(), 1, 4);
 
-        commanders[CommanderID.Opponent].Build(new Windmill(), 1, 1);
-        commanders[CommanderID.Opponent].Build(new Lumberyard(), 3, 1);
-        commanders[CommanderID.Opponent].Build(new Tower(), 0, 0);
-        commanders[CommanderID.Opponent].Build(new Townhall(), 5, 0);
+        //commanders[CommanderID.Player].Build(new Windmill(), 4, 4);
+        //commanders[CommanderID.Player].Build(new Lumberyard(), 2, 4);
+        //commanders[CommanderID.Player].Build(new House(), 1, 5);
+
+        commanders[CommanderID.Opponent].TryBuild(new Townhall(), 4, 1);
+
+        //commanders[CommanderID.Opponent].TryBuild(new Windmill(), 1, 1);
+        //commanders[CommanderID.Opponent].TryBuild(new Lumberyard(), 3, 1);
+        //commanders[CommanderID.Opponent].TryBuild(new Tower(), 0, 0);
 
         //for (int i = 0; i < 2; i++)
         //{

@@ -16,4 +16,8 @@ public class House : Entity
         return Assets.House;
     }
 
+    public override int GetPrice()
+    {
+        return Config.prices.house;
+    }
 }

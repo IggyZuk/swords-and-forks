@@ -33,6 +33,11 @@ public class Lumberyard : Entity
         return Assets.Lumberyard;
     }
 
+    public override int GetPrice()
+    {
+        return Config.prices.lumberyard;
+    }
+
     public void ProcessLumber()
     {
         int count = level + 1;

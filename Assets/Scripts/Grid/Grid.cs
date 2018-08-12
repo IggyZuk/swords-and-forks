@@ -75,9 +75,10 @@ public class Grid : MonoBehaviour
 
     }
 
-    // TODO: needs to find the closest tile
     public Tile FindClosestTileWithEntity(Pos pos, System.Type entityType, CommanderID comID)
     {
+        List<Tile> potentials = new List<Tile>();
+
         foreach (Tile tile in tiles)
         {
             if (tile.Entity == null) continue;
@@ -85,9 +86,28 @@ public class Grid : MonoBehaviour
 
             if (tile.Entity.GetType().IsAssignableFrom(entityType))
             {
-                return tile;
+                potentials.Add(tile);
             }
         }
+
+        if (potentials.Count > 0)
+        {
+            Tile closestTile = null;
+            float closestDistance = 9999f;
+
+            foreach (Tile tile in potentials)
+            {
+                float d = Vector2.Distance(new Vector2(tile.pos.x, tile.pos.y), new Vector2(pos.x, pos.y));
+                if (d < closestDistance)
+                {
+                    closestDistance = d;
+                    closestTile = tile;
+                }
+            }
+
+            return closestTile;
+        }
+
         return null;
     }
 }

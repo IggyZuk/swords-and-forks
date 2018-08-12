@@ -9,4 +9,5 @@ public abstract class Entity
     public abstract void Init();
     public abstract void Deinit();
     public abstract Sprite GetSprite();
+    public virtual int GetPrice() { return 0; }
 }

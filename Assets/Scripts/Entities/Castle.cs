@@ -16,4 +16,9 @@ public class Castle : Entity
         return Assets.Tower;
     }
 
+    public override int GetPrice()
+    {
+        return Config.prices.castle;
+    }
+
 }

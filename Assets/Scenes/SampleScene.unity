@@ -1799,6 +1799,7 @@ MonoBehaviour:
   constructCastle: {fileID: 1440880861}
   emptyBlock0: {fileID: 1293956719}
   emptyBlock1: {fileID: 892940701}
+  descriptionLabel: {fileID: 1763069414}
 --- !u!1 &1293956715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,7 +2422,7 @@ GameObject:
   - component: {fileID: 1763069414}
   - component: {fileID: 1763069416}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DescriptionLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

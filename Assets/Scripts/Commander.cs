@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Commander
 {
@@ -25,19 +24,26 @@ public class Commander
         this.comID = comID;
     }
 
-    public void Build(Entity entity, int x, int y)
+    public bool TryBuild(Entity entity, int x, int y)
     {
-        // TODO: check resources
-        // TODO: check if entity exists
-
-        entity.comID = comID;
-
-        Tile tile = Builder.Build(entity, x, y);
-        if (tile != null)
+        if (entity.GetPrice() <= lumber)
         {
-            tile.Border = color;
-            tile.SetEntityColor(color);
+            lumber -= entity.GetPrice();
+
+            entity.comID = comID;
+
+            Tile tile = Builder.Build(entity, x, y);
+            if (tile != null)
+            {
+                tile.Border = color;
+                tile.SetEntityColor(color);
+            }
+
+            Controller.Instance.UI.UpdateLumber();
+
+            return true;
         }
+        return false;
     }
 
     public void AddLumber(int count = 1)
