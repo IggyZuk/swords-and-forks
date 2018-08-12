@@ -3,15 +3,12 @@ using Momentum;
 
 public class Wheat : Entity
 {
-    Tile tile;
     Task task;
 
     public bool isGrown = false;
 
-    public void Init(Tile tile)
+    public override void Init()
     {
-        this.tile = tile;
-
         tile.SetEntityColor(Config.colors.neutral);
 
         Sprite[] wheatProgressSprites = 
@@ -29,20 +26,20 @@ public class Wheat : Entity
             {
                 isGrown = true;
                 tile.SetEntityColor(Config.colors.yellow);
-                Task.Add().Time(500f).OnComplete(__ => tile.Entity = null);
+                Task.Add().Time(100f).OnComplete(__ => tile.Entity = null);
             });
     }
 
-    public void Deinit()
+    public override void Deinit()
     {
         Core.Juggler.Remove(task);
     }
 
-    public void Tick()
+    public override void Tick()
     {
     }
 
-    public Sprite GetSprite()
+    public override Sprite GetSprite()
     {
         return Assets.Wheat_0;
     }

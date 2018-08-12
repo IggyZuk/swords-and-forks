@@ -9,11 +9,14 @@ public class Commander
 
     public Color color = Config.colors.neutral;
 
-    public Commander(int wood, int food, Color color)
+    public CommanderID comdID;
+
+    public Commander(int wood, int food, Color color, CommanderID comID)
     {
         this.wood = wood;
         this.food = food;
         this.color = color;
+        this.comdID = comID;
     }
 
     public void Build(Entity entity, int x, int y)
@@ -21,7 +24,7 @@ public class Commander
         // TODO: check resources
         // TODO: check if entity exists
 
-        Tile tile = Builder.Build(entity, x, y);
+        Tile tile = Builder.Build(entity, x, y, comdID);
         if (tile != null)
         {
             tile.Border = color;

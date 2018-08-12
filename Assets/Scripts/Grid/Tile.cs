@@ -27,7 +27,8 @@ public class Tile : MonoBehaviour
 
             if (value != null)
             {
-                entity.Init(this);
+                entity.tile = this;
+                entity.Init();
                 SetEntitySprite(entity.GetSprite());
             }
         }

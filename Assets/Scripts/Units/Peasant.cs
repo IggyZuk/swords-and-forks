@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Momentum;
+using System.Collections.Generic;
 
 public class Peasant : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Peasant : MonoBehaviour
     CommanderID comID;
 
     Resource resource = Resource.None;
+    int hunger = 10;
     Task movementTask;
 
     public void Init(int x, int y, CommanderID comID)
@@ -25,14 +27,61 @@ public class Peasant : MonoBehaviour
 
         resourceImage.enabled = false;
 
+        List<Pos> path = new List<Pos>();
+
         Task.Add().Loop(-1).OnRepeat(t =>
         {
             if (movementTask != null) return;
 
-            Pos[] neighbours = Controller.Instance.grid.GetNeighbours(pos);
+            if (resource != Resource.None)
+            {
+                //TODO: find closes windmill
 
+                if (path.Count > 0)
+                {
+                    MoveTo(path[0]);
+                    path.RemoveAt(0);
+                    return;
+                }
+
+                Tile windmill = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Windmill), comID);
+                path = CalculatePath(pos, windmill.pos);
+                path.ForEach(g => Debug.Log(g));
+
+                if (path.Count > 0)
+                {
+                    MoveTo(path[0]);
+                    path.RemoveAt(0);
+                    return;
+                }
+            }
+
+            // Move to a random neighbour
+            Pos[] neighbours = Controller.Instance.grid.GetNeighbours(pos);
             MoveTo(neighbours[Random.Range(0, neighbours.Length)]);
         });
+    }
+
+    public List<Pos> CalculatePath(Pos from, Pos to)
+    {
+        List<Pos> path = new List<Pos>();
+
+        Pos currentPos = from;
+
+        while (currentPos.x != to.x || currentPos.y != to.y)
+        {
+            Pos nextPos = new Pos(
+                Mathf.Clamp(to.x - currentPos.x, -1, 1),
+                Mathf.Clamp(to.y - currentPos.y, -1, 1)
+            );
+
+            currentPos.x += nextPos.x;
+            currentPos.y += nextPos.y;
+
+            path.Add(currentPos);
+        }
+
+        return path;
     }
 
     public void MoveTo(Pos targetPos)
@@ -58,11 +107,17 @@ public class Peasant : MonoBehaviour
            {
                movementTask = null;
 
+               hunger--;
+               //if (hunger <= 0) Object.Destroy(this.gameObject);
+
                if (targetTile.Entity is Windmill)
                {
-                   if (resource != Resource.None)
+                   if (targetTile.Entity.comID == comID)
                    {
-                       DropResource();
+                       if (resource != Resource.None)
+                       {
+                           DropResource();
+                       }
                    }
                }
 

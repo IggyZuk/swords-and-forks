@@ -15,4 +15,6 @@ public static class Config
     }
 
     public static Colors colors = new Colors();
+
+    public static int HungerMax = 10;
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Grid : MonoBehaviour
 {
@@ -73,6 +74,22 @@ public class Grid : MonoBehaviour
 
         return neighbours.ToArray();
 
+    }
+
+    // TODO: needs to find the closest tile
+    public Tile FindClosestTileWithEntity(Pos pos, System.Type entityType, CommanderID comID)
+    {
+        foreach (Tile tile in tiles)
+        {
+            if (tile.Entity == null) continue;
+            if (tile.Entity.comID != comID) continue;
+
+            if (tile.Entity.GetType().IsAssignableFrom(entityType))
+            {
+                return tile;
+            }
+        }
+        return null;
     }
 
     public void TickAll()

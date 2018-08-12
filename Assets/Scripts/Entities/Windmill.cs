@@ -3,15 +3,11 @@ using Momentum;
 
 public class Windmill : Entity
 {
-    Tile tile;
-
     Task wheatGrowingTask;
     Task animationTask;
 
-    public void Init(Tile tile)
+    public override void Init()
     {
-        this.tile = tile;
-
         animationTask = Task.Add()
            .Time(0.5f)
            .Loop(-1)
@@ -27,21 +23,21 @@ public class Windmill : Entity
 
                 Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
 
-                Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y);
+                Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y, CommanderID.None);
             });
     }
 
-    public void Deinit()
+    public override void Deinit()
     {
         Core.Juggler.Remove(animationTask);
         Core.Juggler.Remove(wheatGrowingTask);
     }
 
-    public void Tick()
+    public override void Tick()
     {
     }
 
-    public Sprite GetSprite()
+    public override Sprite GetSprite()
     {
         return Assets.Windmill_0;
     }
