@@ -34,18 +34,10 @@ public class Controller : MonoBehaviour
 
         commanders[CommanderID.Opponent].TryBuild(new Townhall(), 4, 1);
 
+        AI ai = new AI(CommanderID.Opponent);
+
         //commanders[CommanderID.Opponent].TryBuild(new Windmill(), 1, 1);
         //commanders[CommanderID.Opponent].TryBuild(new Lumberyard(), 3, 1);
         //commanders[CommanderID.Opponent].TryBuild(new Tower(), 0, 0);
-
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    Hatchery.SpawnPeasant(4, 4, CommanderID.Player);
-        //}
-
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    Hatchery.SpawnPeasant(1, 1, CommanderID.Opponent);
-        //}
     }
 }

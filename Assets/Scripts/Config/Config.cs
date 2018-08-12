@@ -17,11 +17,11 @@ public static class Config
 
     public class Prices
     {
-        public int house = 2;
-        public int lumberyard = 4;
-        public int windmill = 4;
-        public int tower = 8;
-        public int castle = 20;
+        public int house = 4;
+        public int lumberyard = 6;
+        public int windmill = 10;
+        public int tower = 20;
+        public int castle = 50;
     }
 
     public static Colors colors = new Colors();

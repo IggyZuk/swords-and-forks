@@ -8,6 +8,7 @@ public static class Hatchery
         peasant.Init(x, y, comID);
         peasant.transform.SetParent(Controller.Instance.unitsRoot, false);
         peasant.transform.position = Controller.Instance.grid.GetTile(x, y).transform.position;
+        SpawnEffect(x, y, Config.colors.white);
         return peasant;
     }
 

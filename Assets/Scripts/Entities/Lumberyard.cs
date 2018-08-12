@@ -19,8 +19,6 @@ public class Lumberyard : Entity
 
                 Builder.Build(new Lumber(), randomNeighbour.x, randomNeighbour.y);
             });
-
-        level = 5;
     }
 
     public override void Deinit()
@@ -40,7 +38,7 @@ public class Lumberyard : Entity
 
     public void ProcessLumber()
     {
-        int count = level + 1;
+        int count = 3 * level;
 
         if (comID == CommanderID.Player)
         {

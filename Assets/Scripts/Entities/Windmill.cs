@@ -39,8 +39,6 @@ public class Windmill : Entity
 
                 Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y);
             });
-
-        level = 5;
     }
 
     public override void Deinit()
@@ -61,7 +59,7 @@ public class Windmill : Entity
 
     public void ProcessWheat()
     {
-        int count = level + 1;
+        int count = 2 * level;
 
         if (comID == CommanderID.Player)
         {

@@ -215,6 +215,12 @@ public class Peasant : MonoBehaviour
 
     void DoHunger()
     {
+        body.color = Color.Lerp(
+            Config.colors.black,
+            Controller.Instance.commanders[comID].color,
+            (float)hunger / Config.HungerMax
+        );
+
         if (--hunger <= 0)
         {
             if (Controller.Instance.commanders[comID].wheat > 0)
@@ -240,7 +246,8 @@ public class Peasant : MonoBehaviour
                 isActive = false;
             }
         }
-        if (--hunger <= 0)
+
+        if (--energy <= 0)
         {
             // TODO: go to townhall and rest
         }

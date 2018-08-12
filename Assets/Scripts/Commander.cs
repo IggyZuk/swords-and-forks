@@ -39,6 +39,8 @@ public class Commander
                 tile.SetEntityColor(color);
             }
 
+            Hatchery.SpawnEffect(x, y, Config.colors.white);
+
             Controller.Instance.UI.UpdateLumber();
 
             return true;

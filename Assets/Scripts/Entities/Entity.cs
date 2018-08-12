@@ -4,7 +4,7 @@ public abstract class Entity
 {
     public Tile tile;
     public CommanderID comID;
-    public int level = 0;
+    public int level = 1;
 
     public abstract void Init();
     public abstract void Deinit();

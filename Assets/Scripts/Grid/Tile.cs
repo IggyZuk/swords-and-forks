@@ -102,7 +102,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // TODO: check if enough resources
         Commander com = Controller.Instance.commanders[CommanderID.Player];
         if (com.building != Building.None)
         {
@@ -110,6 +109,12 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             com.building = Building.None;
 
             Controller.Instance.UI.Buttons.EnableAll();
+        }
+        else if (entity != null && entity.comID == CommanderID.Player)
+        {
+            Hatchery.SpawnEffect(pos.x, pos.y, Config.colors.purple);
+            entity.level++;
+            Debug.Log(entity.level);
         }
     }
 }
