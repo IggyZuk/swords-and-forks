@@ -17,7 +17,7 @@ public class Lumberyard : Entity
 
                 Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
 
-                Builder.Build(new Lumber(), randomNeighbour.x, randomNeighbour.y, CommanderID.None);
+                Builder.Build(new Lumber(), randomNeighbour.x, randomNeighbour.y);
             });
 
         level = 5;
@@ -41,8 +41,6 @@ public class Lumberyard : Entity
     {
         int count = level + 1;
 
-        Controller.Instance.commanders[comID].AddLumber(count);
-
         if (comID == CommanderID.Player)
         {
             Task.Add().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
@@ -50,9 +48,14 @@ public class Lumberyard : Entity
                 Controller.Instance.UI.AddResourceBit(
                     Resource.Lumber,
                     tile.transform.position,
-                    Controller.Instance.UI.Lumber.position
+                    Controller.Instance.UI.Lumber.position,
+                    () => Controller.Instance.commanders[comID].AddLumber(count)
                 );
             });
+        }
+        else
+        {
+            Controller.Instance.commanders[comID].AddLumber(count);
         }
     }
 }

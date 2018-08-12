@@ -9,11 +9,14 @@ public class Peasant : MonoBehaviour
     [SerializeField] Image outline;
     [SerializeField] Image resourceImage;
 
+    bool isActive = true;
     Pos pos = new Pos();
     CommanderID comID;
 
     int hunger = Config.HungerMax;
     Resource resource = Resource.None;
+
+    Task updateTask;
     Task movementTask;
 
     public void Init(int x, int y, CommanderID comID)
@@ -29,7 +32,7 @@ public class Peasant : MonoBehaviour
 
         List<Pos> path = new List<Pos>();
 
-        Task.Add().Loop(-1).OnRepeat(t =>
+        updateTask = Task.Add().Loop(-1).OnRepeat(t =>
         {
             if (movementTask != null) return;
 
@@ -50,6 +53,16 @@ public class Peasant : MonoBehaviour
             }
 
             MoveToRandomNeighbour();
+
+            if (!isActive)
+            {
+                Core.Juggler.Remove(updateTask);
+                if (movementTask != null)
+                {
+                    Core.Juggler.Remove(movementTask);
+                }
+                Object.Destroy(this.gameObject);
+            }
         });
     }
 
@@ -154,28 +167,7 @@ public class Peasant : MonoBehaviour
            {
                movementTask = null;
 
-               // TODO: die of starvation
-               hunger--;
-               if (hunger <= 0)
-               {
-                   hunger += Config.HungerMax;
-
-                   Controller.Instance.commanders[comID].RemoveWheat();
-
-                   if (comID == CommanderID.Player)
-                   {
-                       Controller.Instance.UI.AddResourceBit(
-                            Resource.Wheat,
-                            Controller.Instance.UI.Wheat.position,
-                            targetTile.transform.position
-                        );
-                   }
-
-                   //Object.Destroy(this.gameObject);
-               }
-
                targetTile.Glow(Controller.Instance.commanders[comID].color);
-
 
                if (resource == Resource.Lumber)
                {
@@ -213,7 +205,34 @@ public class Peasant : MonoBehaviour
                        TakeResource(Resource.Wheat);
                    }
                }
+
+               DoHunger();
            });
+    }
+
+    void DoHunger()
+    {
+        if (--hunger <= 0)
+        {
+            if (Controller.Instance.commanders[comID].wheat > 0)
+            {
+                hunger += Config.HungerMax;
+
+                if (comID == CommanderID.Player)
+                {
+                    Controller.Instance.UI.AddResourceBit(
+                         Resource.Wheat,
+                         Controller.Instance.UI.Wheat.position,
+                         this.transform.position,
+                         () => Controller.Instance.commanders[comID].RemoveWheat()
+                     );
+                }
+            }
+            else
+            {
+                isActive = false;
+            }
+        }
     }
 
     public void TakeResource(Resource resource)

@@ -7,10 +7,12 @@ public class UI : MonoBehaviour
     [SerializeField] RectTransform root;
     [SerializeField] Text lumberLabel;
     [SerializeField] Text wheatLabel;
+    [SerializeField] RectTransform lumberIcon;
+    [SerializeField] RectTransform wheatIcon;
 
     public RectTransform Root { get { return root; } }
-    public RectTransform Lumber { get { return lumberLabel.transform as RectTransform; } }
-    public RectTransform Wheat { get { return wheatLabel.transform as RectTransform; } }
+    public RectTransform Lumber { get { return lumberIcon; } }
+    public RectTransform Wheat { get { return wheatIcon; } }
 
     public void UpdateResources()
     {
@@ -56,10 +58,11 @@ public class UI : MonoBehaviour
             });
     }
 
-    public void AddResourceBit(Resource resource, Vector2 from, Vector2 to)
+    public void AddResourceBit(Resource resource, Vector2 from, Vector2 to, System.Action onComplete)
     {
         ResourceBit bit = Object.Instantiate(Assets.ResourceBit);
         bit.transform.SetParent(root, false);
+        bit.transform.position = from;
         bit.Init(resource);
 
         Task.Add()
@@ -70,6 +73,8 @@ public class UI : MonoBehaviour
             })
             .OnComplete(_ =>
             {
+                onComplete();
+
                 Destroy(bit.gameObject);
 
                 switch (resource)

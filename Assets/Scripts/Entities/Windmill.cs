@@ -37,7 +37,7 @@ public class Windmill : Entity
 
                 Pos randomNeighbour = neighbours[Random.Range(0, neighbours.Length)];
 
-                Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y, CommanderID.None);
+                Builder.Build(new Wheat(), randomNeighbour.x, randomNeighbour.y);
             });
 
         level = 5;
@@ -62,8 +62,6 @@ public class Windmill : Entity
     {
         int count = level + 1;
 
-        Controller.Instance.commanders[comID].AddWheat(count);
-
         if (comID == CommanderID.Player)
         {
             Task.Add().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
@@ -71,9 +69,14 @@ public class Windmill : Entity
                 Controller.Instance.UI.AddResourceBit(
                     Resource.Wheat,
                     tile.transform.position,
-                    Controller.Instance.UI.Wheat.position
+                    Controller.Instance.UI.Wheat.position,
+                    () => Controller.Instance.commanders[comID].AddWheat(count)
                 );
             });
+        }
+        else
+        {
+            Controller.Instance.commanders[comID].AddWheat(count);
         }
     }
 }

@@ -5,6 +5,9 @@ public class Commander
 {
     // TODO: Move hatchery & builder here
 
+    public int population = 0;
+    public int maxPopulation = 0;
+
     public int lumber = 0;
     public int wheat = 0;
 
@@ -25,7 +28,9 @@ public class Commander
         // TODO: check resources
         // TODO: check if entity exists
 
-        Tile tile = Builder.Build(entity, x, y, comID);
+        entity.comID = comID;
+
+        Tile tile = Builder.Build(entity, x, y);
         if (tile != null)
         {
             tile.Border = color;
