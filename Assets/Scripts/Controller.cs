@@ -17,21 +17,15 @@ public class Controller : MonoBehaviour
 
         Assets.Configure();
 
-        commanders.Add(CommanderID.Player, new Commander(10, 25, Config.colors.blue, CommanderID.Player));
-        commanders.Add(CommanderID.Opponent, new Commander(10, 25, Config.colors.red, CommanderID.Opponent));
+        commanders.Add(CommanderID.Player, new Commander(30, 30, Config.colors.blue, CommanderID.Player));
+        commanders.Add(CommanderID.Opponent, new Commander(30, 30, Config.colors.red, CommanderID.Opponent));
 
         UI.UpdateResources();
 
         grid.Build(6, 6, 36);
 
         // TODO: pick random corners and spawn town hall
-
         commanders[CommanderID.Player].TryBuild(new Townhall(), 1, 4);
-
-        //commanders[CommanderID.Player].Build(new Windmill(), 4, 4);
-        //commanders[CommanderID.Player].Build(new Lumberyard(), 2, 4);
-        //commanders[CommanderID.Player].Build(new House(), 1, 5);
-
         commanders[CommanderID.Opponent].TryBuild(new Townhall(), 4, 1);
 
         AI ai = new AI(CommanderID.Opponent);

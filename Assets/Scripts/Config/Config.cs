@@ -17,6 +17,7 @@ public static class Config
 
     public class Prices
     {
+        public int townhall = 5;
         public int house = 4;
         public int lumberyard = 6;
         public int windmill = 10;

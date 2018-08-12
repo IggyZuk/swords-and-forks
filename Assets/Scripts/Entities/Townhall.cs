@@ -62,4 +62,8 @@ public class Townhall : Entity
         return Assets.Townhall;
     }
 
+    public override int GetPrice()
+    {
+        return Config.prices.townhall;
+    }
 }

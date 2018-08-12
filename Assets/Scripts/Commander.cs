@@ -26,20 +26,20 @@ public class Commander
 
     public bool TryBuild(Entity entity, int x, int y)
     {
+        entity.comID = comID;
+
         if (entity.GetPrice() <= lumber)
         {
-            lumber -= entity.GetPrice();
-
-            entity.comID = comID;
-
             Tile tile = Builder.Build(entity, x, y);
             if (tile != null)
             {
+                lumber -= entity.GetPrice();
+
                 tile.Border = color;
                 tile.SetEntityColor(color);
-            }
 
-            Hatchery.SpawnEffect(x, y, Config.colors.white);
+                Hatchery.SpawnEffect(x, y, Config.colors.white);
+            }
 
             Controller.Instance.UI.UpdateLumber();
 

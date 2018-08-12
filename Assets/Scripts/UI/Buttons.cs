@@ -35,11 +35,17 @@ public class Buttons : MonoBehaviour
         Controller.Instance.commanders[CommanderID.Player].building = building;
         DisableAll();
 
-        descriptionLabel.text =
+        SetDescription(
             building.ToString() +
             "\n-----\n" +
             "Lumber: " +
-            Builder.BuildingToEntity(building).GetPrice().ToString();
+            Builder.BuildingToEntity(building).GetPrice().ToString()
+        );
+    }
+
+    public void SetDescription(string desc)
+    {
+        descriptionLabel.text = desc;
     }
 
     public void DisableAll()

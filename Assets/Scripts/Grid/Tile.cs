@@ -93,7 +93,10 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //TODO: show in desc
+        if (entity == null) return;
+
+
+        Controller.Instance.UI.Buttons.SetDescription(entity.ToString() + "\n-----\nUpgrade: " + entity.GetPrice() * entity.level);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -112,9 +115,24 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
         else if (entity != null && entity.comID == CommanderID.Player)
         {
-            Hatchery.SpawnEffect(pos.x, pos.y, Config.colors.purple);
-            entity.level++;
-            Debug.Log(entity.level);
+            int price = entity.GetPrice() * entity.level;
+            if (price <= com.lumber)
+            {
+                Hatchery.SpawnEffect(pos.x, pos.y, Config.colors.purple);
+
+                entity.level++;
+                Level = entity.level;
+
+                Task.Add().Time(0.03f).Random(0.015f).Loop(price).OnRepeat(_ =>
+                {
+                    Controller.Instance.UI.AddResourceBit(
+                        Resource.Lumber,
+                        Controller.Instance.UI.Lumber.position,
+                        this.transform.position,
+                        () => Controller.Instance.commanders[CommanderID.Player].RemoveLumber()
+                    );
+                });
+            }
         }
     }
 }

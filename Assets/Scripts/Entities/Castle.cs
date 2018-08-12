@@ -13,7 +13,7 @@ public class Castle : Entity
 
     public override Sprite GetSprite()
     {
-        return Assets.Tower;
+        return Assets.Castle;
     }
 
     public override int GetPrice()
