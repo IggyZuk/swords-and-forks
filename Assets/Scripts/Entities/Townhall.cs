@@ -12,10 +12,6 @@ public class Townhall : Entity
     {
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Townhall;

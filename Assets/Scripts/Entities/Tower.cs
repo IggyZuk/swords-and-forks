@@ -11,10 +11,6 @@ public class Tower : Entity
     {
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Tower;

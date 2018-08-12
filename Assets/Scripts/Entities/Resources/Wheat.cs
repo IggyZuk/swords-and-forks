@@ -39,10 +39,6 @@ public class Wheat : Entity
         Core.Juggler.Remove(task);
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Wheat0;

@@ -11,10 +11,6 @@ public class Castle : Entity
     {
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Tower;

@@ -67,11 +67,6 @@ public class Tile : MonoBehaviour
         entityImage.color = color;
     }
 
-    public void Tick()
-    {
-        if (entity != null) entity.Tick();
-    }
-
     public void Glow(Color color)
     {
         if (entity != null && entity.comID != CommanderID.None) return;

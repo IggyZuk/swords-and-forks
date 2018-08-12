@@ -11,10 +11,6 @@ public class House : Entity
     {
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.House;

@@ -28,10 +28,6 @@ public class Lumberyard : Entity
         Core.Juggler.Remove(plantLumberTask);
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Lumberyard;

@@ -46,9 +46,4 @@ public class Controller : MonoBehaviour
         //    Hatchery.SpawnPeasant(1, 1, CommanderID.Opponent);
         //}
     }
-
-    void FixedUpdate()
-    {
-        grid.TickAll();
-    }
 }

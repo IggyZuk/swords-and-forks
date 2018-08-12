@@ -8,6 +8,5 @@ public abstract class Entity
 
     public abstract void Init();
     public abstract void Deinit();
-    public abstract void Tick();
     public abstract Sprite GetSprite();
 }

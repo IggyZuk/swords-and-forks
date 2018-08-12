@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Grid : MonoBehaviour
 {
@@ -90,13 +89,5 @@ public class Grid : MonoBehaviour
             }
         }
         return null;
-    }
-
-    public void TickAll()
-    {
-        foreach (Tile t in tiles)
-        {
-            t.Tick();
-        }
     }
 }

@@ -49,10 +49,6 @@ public class Windmill : Entity
         Core.Juggler.Remove(plantWheatTask);
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Windmill0;

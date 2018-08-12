@@ -39,10 +39,6 @@ public class Lumber : Entity
         Core.Juggler.Remove(task);
     }
 
-    public override void Tick()
-    {
-    }
-
     public override Sprite GetSprite()
     {
         return Assets.Lumber0;
