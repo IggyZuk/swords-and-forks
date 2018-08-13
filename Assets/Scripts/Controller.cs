@@ -32,21 +32,6 @@ public class Controller : MonoBehaviour
         commanders[CommanderID.Opponent].TryBuild(new Townhall(), 5, 0);
 
         AI ai = new AI(CommanderID.Opponent);
-
-        Task.Add()
-            .Name("Overflow")
-            .Time(2f)
-            .Loop(-1)
-            .Dispose(disposables)
-            .OnRepeat(data =>
-            {
-                Pos[] ps = grid.GetBorderPositions(CommanderID.Opponent);
-
-                Task.Add().Time(0.01f).Random(0.01f).Loop(ps.Length).OnRepeat(tt =>
-                {
-                    grid.GetTile(ps[tt.CurrentLoop - 1]).Glow(Config.colors.red);
-                });
-            });
     }
 
     void OnDestroy()
