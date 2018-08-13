@@ -9,8 +9,6 @@ namespace Momentum
 
         [SerializeField] bool isActive = true;
 
-        [SerializeField] string name = string.Empty;
-
         [SerializeField] float time = 0f;
         [SerializeField] float currentTime = 0f;
 
@@ -34,12 +32,6 @@ namespace Momentum
         {
             get { return isActive; }
             set { isActive = value; }
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
         }
 
         public float CurrentTime

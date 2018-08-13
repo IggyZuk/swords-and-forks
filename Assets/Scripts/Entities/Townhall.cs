@@ -10,7 +10,7 @@ public class Townhall : Entity
     {
         Hatchery.SpawnPeasant(tile.pos.x, tile.pos.y, comID);
 
-        lumberProductionTask = Task.Add().Time(25f - Mathf.Clamp(level, 0, 20)).Loop(-1).OnRepeat(_ =>
+        lumberProductionTask = Task.Add().Name("Townhall(produce)").Time(25f - Mathf.Clamp(level, 0, 20)).Loop(-1).OnRepeat(_ =>
         {
             if (comID == CommanderID.Player)
             {

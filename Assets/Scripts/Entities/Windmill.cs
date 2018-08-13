@@ -17,6 +17,7 @@ public class Windmill : Entity
         };
 
         animTask = Task.Add()
+           .Name("Windmill(anim)")
            .Time(0.25f)
            .Loop(-1)
            .OnRepeat(t =>
@@ -28,6 +29,7 @@ public class Windmill : Entity
            });
 
         plantWheatTask = Task.Add()
+            .Name("Windmill(produce)")
             .Time(5f)
             .Loop(-1)
             .Random(2.5f)

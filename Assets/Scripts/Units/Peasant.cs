@@ -33,7 +33,7 @@ public class Peasant : MonoBehaviour
 
         List<Pos> path = new List<Pos>();
 
-        updateTask = Task.Add().Loop(-1).OnRepeat(t =>
+        updateTask = Task.Add().Name("Peasant(tick)").Loop(-1).OnRepeat(t =>
         {
             if (movementTask != null) return;
 
@@ -158,6 +158,7 @@ public class Peasant : MonoBehaviour
         Vector2 target = targetTile.transform.position;
 
         movementTask = Task.Add()
+           .Name("Peasant (move)")
            .Time(1f)
            .Random(0.25f)
            .OnUpdate(t =>
@@ -262,13 +263,13 @@ public class Peasant : MonoBehaviour
         switch (resource)
         {
             case Resource.Lumber:
-                resourceImage.sprite = Assets.Lumber4;
-                resourceImage.color = Config.colors.green;
-                break;
+            resourceImage.sprite = Assets.Lumber4;
+            resourceImage.color = Config.colors.green;
+            break;
             case Resource.Wheat:
-                resourceImage.sprite = Assets.Wheat4;
-                resourceImage.color = Config.colors.yellow;
-                break;
+            resourceImage.sprite = Assets.Wheat4;
+            resourceImage.color = Config.colors.yellow;
+            break;
 
         }
     }

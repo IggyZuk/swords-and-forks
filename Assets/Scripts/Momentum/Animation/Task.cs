@@ -5,6 +5,8 @@ namespace Momentum
     [System.Serializable]
     public class Task
     {
+        [SerializeField] string name = string.Empty;
+
         [SerializeField] TaskData data;
 
         System.Action<TaskData> onStart;
@@ -31,7 +33,7 @@ namespace Momentum
 
         public Task Name(string name)
         {
-            data.Name = name;
+            this.name = name;
             return this;
         }
 

@@ -75,6 +75,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (glowTask != null) Core.Juggler.Remove(glowTask);
 
         glowTask = Task.Add()
+            .Name("Tile Glow")
             .Time(5f)
             .Random(0.5f)
             .OnUpdate(tileGlowTask =>
