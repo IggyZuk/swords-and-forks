@@ -24,7 +24,7 @@ public class Buttons : MonoBehaviour
 
             if (Config.prices.peasant <= com.wheat)
             {
-                Tile t = Controller.Instance.grid.FindClosestTileWithEntity(new Pos(), typeof(Townhall), CommanderID.Player);
+                Tile t = Controller.Instance.grid.FindClosestTileWithEntity<Townhall>(new Pos(), CommanderID.Player);
                 Hatchery.SpawnPeasant(t.pos.x, t.pos.y, CommanderID.Player);
 
                 Task.Add().Time(0.03f).Random(0.015f).Loop(Config.prices.peasant).OnRepeat(_ =>

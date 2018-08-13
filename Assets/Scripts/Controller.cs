@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Momentum;
 
 public class Controller : MonoBehaviour
 {
@@ -25,9 +26,22 @@ public class Controller : MonoBehaviour
         grid.Build(6, 6, 36);
 
         // TODO: pick random corners and spawn town hall
-        commanders[CommanderID.Player].TryBuild(new Townhall(), 1, 4);
-        commanders[CommanderID.Opponent].TryBuild(new Townhall(), 4, 1);
+        commanders[CommanderID.Player].TryBuild(new Townhall(), 0, 5);
+        commanders[CommanderID.Opponent].TryBuild(new Townhall(), 5, 0);
 
         AI ai = new AI(CommanderID.Opponent);
+
+        Task.Add().Time(2f).Loop(-1).OnRepeat(_ =>
+        {
+            Pos[] ps = grid.GetBorderPositions(CommanderID.Opponent);
+
+            //foreach (Pos pos in ps)
+            {
+                Task.Add().Time(0.01f).Random(0.01f).Loop(ps.Length).OnRepeat(tt =>
+                {
+                    grid.GetTile(ps[tt.currentLoop - 1]).Glow(Config.colors.red);
+                });
+            }
+        });
     }
 }

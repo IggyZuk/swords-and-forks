@@ -95,7 +95,7 @@ public class Peasant : MonoBehaviour
         }
         else if (resource == Resource.Lumber)
         {
-            Tile t = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Lumberyard), comID);
+            Tile t = Controller.Instance.grid.FindClosestTileWithEntity<Lumberyard>(pos, comID);
             if (t == null)
             {
                 DropResource();
@@ -106,7 +106,7 @@ public class Peasant : MonoBehaviour
         }
         else if (resource == Resource.Wheat)
         {
-            Tile t = Controller.Instance.grid.FindClosestTileWithEntity(pos, typeof(Windmill), comID);
+            Tile t = Controller.Instance.grid.FindClosestTileWithEntity<Windmill>(pos, comID);
             if (t == null)
             {
                 DropResource();
@@ -170,7 +170,7 @@ public class Peasant : MonoBehaviour
 
                movementTask = null;
 
-               targetTile.Glow(Controller.Instance.commanders[comID].color);
+               //targetTile.Glow(Controller.Instance.commanders[comID].color);
 
                if (resource == Resource.Lumber)
                {
@@ -215,11 +215,11 @@ public class Peasant : MonoBehaviour
 
     void DoHunger()
     {
-        body.color = Color.Lerp(
-            Config.colors.black,
-            Controller.Instance.commanders[comID].color,
-            (float)hunger / Config.HungerMax
-        );
+        //body.color = Color.Lerp(
+        //    Config.colors.black,
+        //    Controller.Instance.commanders[comID].color,
+        //    (float)hunger / Config.HungerMax
+        //);
 
         if (--hunger <= 0)
         {

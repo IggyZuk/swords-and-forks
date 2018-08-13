@@ -47,7 +47,10 @@ public class AI
 
             if (commands.Count > 0)
             {
-                if (com.TryBuild(Builder.BuildingToEntity(commands[0]), Random.Range(0, 5), Random.Range(0, 5)))
+                Pos[] borderPositions = Controller.Instance.grid.GetBorderPositions(CommanderID.Opponent);
+                Pos randomPos = borderPositions[Random.Range(0, borderPositions.Length)];
+
+                if (com.TryBuild(Builder.BuildingToEntity(commands[0]), randomPos.x, randomPos.y))
                 {
                     commands.RemoveAt(0);
                 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Grid : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class Grid : MonoBehaviour
 
     }
 
-    public Tile FindClosestTileWithEntity(Pos pos, System.Type entityType, CommanderID comID)
+    public Tile FindClosestTileWithEntity<T>(Pos pos, CommanderID comID)
     {
         List<Tile> potentials = new List<Tile>();
 
@@ -84,7 +85,7 @@ public class Grid : MonoBehaviour
             if (tile.Entity == null) continue;
             if (tile.Entity.comID != comID) continue;
 
-            if (tile.Entity.GetType().IsAssignableFrom(entityType))
+            if (tile.Entity is T)
             {
                 potentials.Add(tile);
             }
@@ -109,5 +110,35 @@ public class Grid : MonoBehaviour
         }
 
         return null;
+    }
+
+    public Pos[] GetBorderPositions(CommanderID comID)
+    {
+        List<Tile> buildings = new List<Tile>();
+
+        foreach (Tile tile in tiles)
+        {
+            if (tile.Entity != null && tile.Entity.comID == comID)
+            {
+                buildings.Add(tile);
+            }
+        }
+
+        HashSet<Pos> emptyBorderPositions = new HashSet<Pos>();
+
+        foreach (Tile commanderTiles in buildings)
+        {
+            Pos[] neighPositions = GetNeighbours(commanderTiles.pos);
+            foreach (Pos neighPos in neighPositions)
+            {
+                Tile neighTile = GetTile(neighPos);
+                if (neighTile.Entity == null)
+                {
+                    emptyBorderPositions.Add(neighPos);
+                }
+            }
+        }
+
+        return emptyBorderPositions.ToArray();
     }
 }

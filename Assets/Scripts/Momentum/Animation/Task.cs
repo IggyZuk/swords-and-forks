@@ -47,6 +47,11 @@ namespace Momentum
             return task;
         }
 
+        public static void Remove(Task task)
+        {
+            Core.Juggler.Remove(task);
+        }
+
         public Task Name(string name)
         {
             _name = name;
