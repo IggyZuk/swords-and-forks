@@ -33,8 +33,8 @@ public class UI : MonoBehaviour
             .Random(0.5f)
             .OnUpdate(t =>
             {
-                lumberLabel.transform.localScale = Vector3.one * Mathf.LerpUnclamped(2f, 1f, Ease.OutBack(t.progress));
-                lumberLabel.color = Color.Lerp(Config.colors.white, Config.colors.green, Ease.InOutSine(t.progress));
+                lumberLabel.transform.localScale = Vector3.one * Mathf.LerpUnclamped(2f, 1f, Ease.OutBack(t.Progress));
+                lumberLabel.color = Color.Lerp(Config.colors.white, Config.colors.green, Ease.InOutSine(t.Progress));
             })
             .OnComplete(_ =>
             {
@@ -52,8 +52,8 @@ public class UI : MonoBehaviour
             .Random(0.5f)
             .OnUpdate(t =>
             {
-                wheatLabel.transform.localScale = Vector3.one * Mathf.LerpUnclamped(2f, 1f, Ease.OutBack(t.progress));
-                wheatLabel.color = Color.Lerp(Config.colors.white, Config.colors.yellow, Ease.InOutSine(t.progress));
+                wheatLabel.transform.localScale = Vector3.one * Mathf.LerpUnclamped(2f, 1f, Ease.OutBack(t.Progress));
+                wheatLabel.color = Color.Lerp(Config.colors.white, Config.colors.yellow, Ease.InOutSine(t.Progress));
             })
             .OnComplete(_ =>
             {
@@ -73,7 +73,7 @@ public class UI : MonoBehaviour
             .Time(0.5f)
             .OnUpdate(t =>
             {
-                bit.transform.position = Vector3.LerpUnclamped(from, to, Ease.InOutSine(t.progress));
+                bit.transform.position = Vector3.LerpUnclamped(from, to, Ease.InOutSine(t.Progress));
             })
             .OnComplete(_ =>
             {

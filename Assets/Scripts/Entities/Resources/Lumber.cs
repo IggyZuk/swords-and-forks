@@ -24,7 +24,7 @@ public class Lumber : Entity
             .Time(40f - Mathf.Clamp(level * 3, 0, 20))
             .Random(10f - Mathf.Clamp(level * 3, 0, 10))
             .OnUpdate(t => tile.SetEntitySprite(animSprites[
-                (int)(Mathf.Clamp(t.progress * animSprites.Length - 1, 0, animSprites.Length - 1))
+                (int)(Mathf.Clamp(t.Progress * animSprites.Length - 1, 0, animSprites.Length - 1))
             ]))
             .OnComplete(_ =>
             {

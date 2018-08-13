@@ -82,7 +82,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 borderImage.color = Color.Lerp(
                     color,
                     Config.colors.neutral,
-                    Ease.InOutSine(tileGlowTask.progress)
+                    Ease.InOutSine(tileGlowTask.Progress)
                 );
             })
             .OnComplete(_ =>

@@ -12,6 +12,8 @@ public class Controller : MonoBehaviour
     public Grid grid;
     public RectTransform unitsRoot;
 
+    TaskDisposables disposables = new TaskDisposables();
+
     void Awake()
     {
         Instance = this;
@@ -31,17 +33,23 @@ public class Controller : MonoBehaviour
 
         AI ai = new AI(CommanderID.Opponent);
 
-        Task.Add().Time(2f).Loop(-1).OnRepeat(_ =>
-        {
-            Pos[] ps = grid.GetBorderPositions(CommanderID.Opponent);
-
-            //foreach (Pos pos in ps)
+        Task.Add()
+            .Time(2f)
+            .Loop(-1)
+            .Dispose(disposables)
+            .OnRepeat(data =>
             {
+                Pos[] ps = grid.GetBorderPositions(CommanderID.Opponent);
+
                 Task.Add().Time(0.01f).Random(0.01f).Loop(ps.Length).OnRepeat(tt =>
                 {
-                    grid.GetTile(ps[tt.currentLoop - 1]).Glow(Config.colors.red);
+                    grid.GetTile(ps[tt.CurrentLoop - 1]).Glow(Config.colors.red);
                 });
-            }
-        });
+            });
+    }
+
+    void OnDestroy()
+    {
+        disposables.Dispose();
     }
 }

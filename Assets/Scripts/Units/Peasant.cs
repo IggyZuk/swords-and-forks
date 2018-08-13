@@ -162,7 +162,7 @@ public class Peasant : MonoBehaviour
            .Random(0.25f)
            .OnUpdate(t =>
            {
-               this.transform.position = Vector2.LerpUnclamped(origin, target, Ease.InOutBack(t.progress));
+               this.transform.position = Vector2.LerpUnclamped(origin, target, Ease.InOutBack(t.Progress));
            })
            .OnComplete(t =>
            {

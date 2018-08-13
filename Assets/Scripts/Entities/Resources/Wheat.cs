@@ -24,7 +24,7 @@ public class Wheat : Entity
             .Time(10f - Mathf.Clamp(level * 2, 0, 8))
             .Random(5f - Mathf.Clamp(level * 2, 0, 5))
             .OnUpdate(t => tile.SetEntitySprite(animSprites[
-                (int)(Mathf.Clamp(t.progress * animSprites.Length - 1, 0, animSprites.Length - 1))
+                (int)(Mathf.Clamp(t.Progress * animSprites.Length - 1, 0, animSprites.Length - 1))
             ]))
             .OnComplete(_ =>
             {

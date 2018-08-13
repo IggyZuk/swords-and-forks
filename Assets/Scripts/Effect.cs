@@ -26,7 +26,7 @@ public class Effect : MonoBehaviour
             .Time(0.75f)
             .OnUpdate(t =>
             {
-                int frameIdx = (int)(t.progress * frames.Length - 1);
+                int frameIdx = (int)(t.Progress * frames.Length - 1);
                 frameIdx = Mathf.Clamp(frameIdx, 0, frames.Length - 1);
 
                 image.sprite = frames[frameIdx];
