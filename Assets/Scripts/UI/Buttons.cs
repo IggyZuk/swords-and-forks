@@ -27,7 +27,7 @@ public class Buttons : MonoBehaviour
                 Tile t = Controller.Instance.grid.FindClosestTileWithEntity<Townhall>(new Pos(), CommanderID.Player);
                 Hatchery.SpawnPeasant(t.pos.x, t.pos.y, CommanderID.Player);
 
-                Task.Add().Time(0.03f).Random(0.015f).Loop(Config.prices.peasant).OnRepeat(_ =>
+                Task.Run().Time(0.03f).Random(0.015f).Loop(Config.prices.peasant).OnRepeat(_ =>
                 {
                     Controller.Instance.commanders[CommanderID.Player].RemoveWheat();
 

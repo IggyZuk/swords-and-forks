@@ -10,11 +10,11 @@ public class Townhall : Entity
     {
         Hatchery.SpawnPeasant(tile.pos.x, tile.pos.y, comID);
 
-        lumberProductionTask = Task.Add().Name("Townhall(produce)").Time(25f - Mathf.Clamp(level, 0, 20)).Loop(-1).OnRepeat(_ =>
+        lumberProductionTask = Task.Run().Name("Townhall(produce)").Time(25f - Mathf.Clamp(level, 0, 20)).Loop(-1).OnRepeat(_ =>
         {
             if (comID == CommanderID.Player)
             {
-                Task.Add().Time(0.03f).Random(0.015f).Loop(level).OnRepeat(__ =>
+                Task.Run().Time(0.03f).Random(0.015f).Loop(level).OnRepeat(__ =>
                 {
                     Controller.Instance.UI.AddResourceBit(
                         Resource.Lumber,
@@ -30,11 +30,11 @@ public class Townhall : Entity
             }
         });
 
-        wheatProductionTask = Task.Add().Time(10f - Mathf.Clamp(level, 0, 8)).Loop(-1).OnRepeat(_ =>
+        wheatProductionTask = Task.Run().Time(10f - Mathf.Clamp(level, 0, 8)).Loop(-1).OnRepeat(_ =>
         {
             if (comID == CommanderID.Player)
             {
-                Task.Add().Time(0.03f).Random(0.015f).Loop(level).OnRepeat(__ =>
+                Task.Run().Time(0.03f).Random(0.015f).Loop(level).OnRepeat(__ =>
                 {
                     Controller.Instance.UI.AddResourceBit(
                         Resource.Wheat,

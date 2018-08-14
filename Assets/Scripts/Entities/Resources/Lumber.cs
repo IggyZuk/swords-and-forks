@@ -20,7 +20,7 @@ public class Lumber : Entity
             Assets.Lumber4
         };
 
-        task = Task.Add()
+        task = Task.Run()
             .Time(40f - Mathf.Clamp(level * 3, 0, 20))
             .Random(10f - Mathf.Clamp(level * 3, 0, 10))
             .OnUpdate(t => tile.SetEntitySprite(animSprites[

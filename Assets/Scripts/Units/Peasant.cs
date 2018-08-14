@@ -33,7 +33,7 @@ public class Peasant : MonoBehaviour
 
         List<Pos> path = new List<Pos>();
 
-        updateTask = Task.Add().Name("Peasant(tick)").Loop(-1).OnRepeat(t =>
+        updateTask = Task.Run().Name("Peasant(tick)").Loop(-1).OnRepeat(t =>
         {
             if (movementTask != null) return;
 
@@ -157,7 +157,7 @@ public class Peasant : MonoBehaviour
         Vector2 origin = originTile.transform.position;
         Vector2 target = targetTile.transform.position;
 
-        movementTask = Task.Add()
+        movementTask = Task.Run()
            .Name("Peasant (move)")
            .Time(1f)
            .Random(0.25f)

@@ -22,7 +22,7 @@ public class Effect : MonoBehaviour
         image.sprite = frames[0];
         image.color = color;
 
-        Task.Add()
+        Task.Run()
             .Time(0.75f)
             .OnUpdate(t =>
             {

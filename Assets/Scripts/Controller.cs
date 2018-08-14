@@ -20,7 +20,7 @@ public class Controller : MonoBehaviour
 
         Assets.Configure();
 
-        commanders.Add(CommanderID.Player, new Commander(30, 30, Config.colors.blue, CommanderID.Player));
+        commanders.Add(CommanderID.Player, new Commander(300, 30, Config.colors.blue, CommanderID.Player));
         commanders.Add(CommanderID.Opponent, new Commander(30, 30, Config.colors.red, CommanderID.Opponent));
 
         UI.UpdateResources();

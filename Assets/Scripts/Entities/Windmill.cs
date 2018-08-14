@@ -16,7 +16,7 @@ public class Windmill : Entity
             Assets.Windmill2
         };
 
-        animTask = Task.Add()
+        animTask = Task.Run()
            .Name("Windmill(anim)")
            .Time(0.25f)
            .Loop(-1)
@@ -28,7 +28,7 @@ public class Windmill : Entity
                animIndex = animIndex %= animSprites.Length;
            });
 
-        plantWheatTask = Task.Add()
+        plantWheatTask = Task.Run()
             .Name("Windmill(produce)")
             .Time(5f)
             .Loop(-1)
@@ -68,7 +68,7 @@ public class Windmill : Entity
 
         if (comID == CommanderID.Player)
         {
-            Task.Add().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
+            Task.Run().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
             {
                 Controller.Instance.UI.AddResourceBit(
                     Resource.Wheat,

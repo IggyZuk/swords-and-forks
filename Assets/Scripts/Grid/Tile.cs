@@ -74,7 +74,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         if (glowTask != null) Core.Juggler.Remove(glowTask);
 
-        glowTask = Task.Add()
+        glowTask = Task.Run()
             .Name("Tile Glow")
             .Time(5f)
             .Random(0.5f)
@@ -124,7 +124,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 entity.level++;
                 Level = entity.level;
 
-                Task.Add().Time(0.03f).Random(0.015f).Loop(price).OnRepeat(_ =>
+                Task.Run().Time(0.03f).Random(0.015f).Loop(price).OnRepeat(_ =>
                 {
                     Controller.Instance.UI.AddResourceBit(
                         Resource.Lumber,

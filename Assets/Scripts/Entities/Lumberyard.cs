@@ -7,7 +7,7 @@ public class Lumberyard : Entity
 
     public override void Init()
     {
-        plantLumberTask = Task.Add()
+        plantLumberTask = Task.Run()
             .Time(7f)
             .Random(2.5f)
             .Loop(-1)
@@ -45,7 +45,7 @@ public class Lumberyard : Entity
 
         if (comID == CommanderID.Player)
         {
-            Task.Add().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
+            Task.Run().Time(0.03f).Random(0.015f).Loop(count).OnRepeat(_ =>
             {
                 Controller.Instance.UI.AddResourceBit(
                     Resource.Lumber,

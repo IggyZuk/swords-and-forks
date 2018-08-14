@@ -28,6 +28,11 @@ namespace Momentum
             this.task = task;
         }
 
+        public Task Task
+        {
+            get { return task; }
+        }
+
         public bool IsActive
         {
             get { return isActive; }
@@ -85,11 +90,6 @@ namespace Momentum
         {
             get { return currentLoop; }
             set { currentLoop = value; }
-        }
-
-        public Task Task
-        {
-            get { return task; }
         }
 
         public Task Next

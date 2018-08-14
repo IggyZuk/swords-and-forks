@@ -28,7 +28,7 @@ public class UI : MonoBehaviour
     {
         lumberLabel.text = Controller.Instance.commanders[CommanderID.Player].lumber.ToString();
 
-        Task.Add()
+        Task.Run()
             .Time(1f)
             .Random(0.5f)
             .OnUpdate(t =>
@@ -47,7 +47,7 @@ public class UI : MonoBehaviour
     {
         wheatLabel.text = Controller.Instance.commanders[CommanderID.Player].wheat.ToString();
 
-        Task.Add()
+        Task.Run()
             .Time(1f)
             .Random(0.5f)
             .OnUpdate(t =>
@@ -69,7 +69,7 @@ public class UI : MonoBehaviour
         bit.transform.position = from;
         bit.Init(resource);
 
-        Task.Add()
+        Task.Run()
             .Time(0.5f)
             .OnUpdate(t =>
             {

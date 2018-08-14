@@ -6,7 +6,6 @@ namespace Momentum
     public class Task
     {
         [SerializeField] string name = string.Empty;
-
         [SerializeField] TaskData data;
 
         System.Action<TaskData> onStart;
@@ -14,21 +13,30 @@ namespace Momentum
         System.Action<TaskData> onRepeat;
         System.Action<TaskData> onComplete;
 
+        const float FixedDelta = 0.02f;
+
+        public bool IsActive { get { return data.IsActive; } }
+
         public Task()
         {
             data = new TaskData(this);
         }
 
-        public static Task Add()
+        public static Task Run()
         {
             Task task = new Task();
-            Core.Juggler.Add(task);
+            task.Start();
             return task;
         }
 
-        public static void Remove(Task task)
+        public void Start()
         {
-            Core.Juggler.Remove(task);
+            Core.Juggler.Add(this);
+        }
+
+        public void Stop()
+        {
+            Core.Juggler.Remove(this);
         }
 
         public Task Name(string name)
@@ -55,7 +63,7 @@ namespace Momentum
             return this;
         }
 
-        public Task Loop(int loops = 0)
+        public Task Loop(int loops = -1)
         {
             if (loops == -1)
             {
@@ -68,11 +76,10 @@ namespace Momentum
             return this;
         }
 
-        // TODO: have multiple children; go one by one though them
         public Task Next(Task task)
         {
             data.Next = task;
-            return this;
+            return task;
         }
 
         public Task Dispose(TaskDisposables container)
@@ -132,7 +139,7 @@ namespace Momentum
 
                     if (onComplete != null) onComplete(data);
 
-                    if (data.Next != null) Core.Juggler.Add(data.Next);
+                    if (data.Next != null) data.Next.Start();
 
                     break;
                 }
@@ -140,7 +147,7 @@ namespace Momentum
                 {
                     data.CurrentLoop++;
 
-                    data.CurrentTime -= data.Time + deltaTime;
+                    data.CurrentTime -= Mathf.Clamp(data.Time, FixedDelta, data.Time);
 
                     data.CurrentRandom = UnityEngine.Random.Range(-data.Random, data.Random);
 
@@ -150,11 +157,6 @@ namespace Momentum
                     }
                 }
             }
-        }
-
-        public bool IsActive()
-        {
-            return data.IsActive;
         }
 
         public void Reset()

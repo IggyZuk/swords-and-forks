@@ -41,7 +41,7 @@ public class AI
         commands.Add(Building.House);
         commands.Add(Building.House);
 
-        Task.Add().Name("AI Brain").Time(5f).Random(4f).Loop(-1).OnRepeat(_ =>
+        Task.Run().Name("AI Brain").Time(5f).Random(4f).Loop(-1).OnRepeat(_ =>
         {
             Debug.Log("Thinking...");
 

@@ -20,7 +20,7 @@ public class Wheat : Entity
             Assets.Wheat4
         };
 
-        task = Task.Add()
+        task = Task.Run()
             .Time(10f - Mathf.Clamp(level * 2, 0, 8))
             .Random(5f - Mathf.Clamp(level * 2, 0, 5))
             .OnUpdate(t => tile.SetEntitySprite(animSprites[
