@@ -124,7 +124,7 @@ namespace Momentum
 
             if (onUpdate != null) onUpdate(data);
 
-            if (data.CurrentTime >= data.Time)
+            while (data.CurrentTime >= data.Time)
             {
                 if (data.CurrentLoop == data.Loops)
                 {
@@ -133,12 +133,14 @@ namespace Momentum
                     if (onComplete != null) onComplete(data);
 
                     if (data.Next != null) Core.Juggler.Add(data.Next);
+
+                    break;
                 }
                 else if (data.CurrentLoop < data.Loops)
                 {
                     data.CurrentLoop++;
 
-                    data.CurrentTime -= data.CurrentTime + deltaTime;
+                    data.CurrentTime -= data.Time + deltaTime;
 
                     data.CurrentRandom = UnityEngine.Random.Range(-data.Random, data.Random);
 
